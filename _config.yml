@@ -12,7 +12,7 @@ language:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://poweredbyjeff.com
+url: http://www.poweredbyjeff.com
 root: /
 permalink: :year/:month/:day/:title/
 tag_dir: tags
@@ -81,6 +81,8 @@ disqus_shortname: tuxillator
 ## Themes: https://github.com/hexojs/hexo/wiki/Themes
 theme: apollo
 exclude_generator:
+plugins:
+- hexo-generator-cname
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
