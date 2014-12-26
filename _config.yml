@@ -83,6 +83,12 @@ theme: apollo
 exclude_generator:
 plugins:
 - hexo-generator-cname
+- hexo-generator-feed
+
+feed:
+  type: atom
+  path: atom.xml
+  limit: 0
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html

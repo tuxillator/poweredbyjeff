@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "hexo-generator-cname": "^0.1.1",
+    "hexo-generator-feed": "^0.2.1",
     "hexo-renderer-ejs": "*",
     "hexo-renderer-marked": "*",
     "hexo-renderer-stylus": "*"
