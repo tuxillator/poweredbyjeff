@@ -1,6 +1,8 @@
 title: Fighting spam in Drupal 7 - disable the homepage field on comments
 date: 2013-06-02 18:58:00
 tags:
+- drupal
+- programming
 ---
 Spam is really annoying, particularly for anybody maintaining a website with anonymous contribution - in my case via comments. Mollum filters the bulk of the spammers out. Unfortunately if you want to capture anonymous commenter's contact information in Drupal 7 this also exposes and displays the homepage field. This is also displayed to all visitors to your website that can access this content - incentive for link spammers :(
 

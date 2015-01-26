@@ -1,6 +1,8 @@
 title: My ideal Minecraft server buildout (v3)
 date: 2014-03-22 18:00:00
 tags:
+- minecraft
+- serveradmin
 ---
 So after much consideration, I updated and tightened my private Minecraft server. TL;DR:
 

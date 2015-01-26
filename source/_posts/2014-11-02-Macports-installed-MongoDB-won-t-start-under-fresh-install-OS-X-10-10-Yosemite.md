@@ -1,6 +1,8 @@
 title: "Macports-installed MongoDB won't start under fresh install (OS X 10.10 Yosemite)"
 date: 2014-11-02 11:02:00
 tags:
+- macports
+- mongodb
 ---
 I had problems getting MongoDB to start using launchd (my preferred method for portability) after a fresh Yosemite install. After initially suspecting the _mongo user was not being correctly created by the Macports installation script, it turned out to be a simple permissions issue. <!-- more --> After doing:
 ```

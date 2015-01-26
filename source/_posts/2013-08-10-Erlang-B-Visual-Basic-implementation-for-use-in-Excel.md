@@ -1,6 +1,7 @@
 title: Erlang B Visual Basic implementation for use in Excel
 date: 2013-08-10 13:43:00
 tags:
+- programming
 ---
 Erlang B is a commonly used algorithm used to estimate required capacity for a given load. Originating in telephony for estimating required trunks/channels for an expected load, this same algorithm can be applied to any problem where you have a known arrival rate and required Grade of Service - e.g. servers required for given web traffic, lanes required for given car traffic, staff required for given customers  in a retail shop, etc. I'm by no means an expert on the algorithm (it involves poisson distributions and clever things mathematicians get exited about). I do however use it so need it available in a format that doesn't require a maths degree or regularly going to websites, hence Excel. Note also that this does not account for queuing (Erlang C for that) so may not be suitable where you expect and accept a queue, e.g. customers in your store can wait a few minutes and would not typically mind.
 <!-- more -->

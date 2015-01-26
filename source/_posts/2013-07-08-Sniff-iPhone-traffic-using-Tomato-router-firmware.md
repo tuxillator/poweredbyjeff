@@ -1,6 +1,8 @@
 title: Sniff iPhone traffic using Tomato router firmware
 date: 2013-07-08 18:48:00
 tags:
+- tomato
+- networking
 ---
 I had a need recently to sniff traffic going to an iPhone at home. Nothing nefarious; just trying to figure out why iCloud backup was not working. Anyhow, a decent (and secure) wifi router would typically only send data to the destination hardware address, meaning I could not see the iPhone's traffic using tcpdump or Wireshark. In effect what I wanted to do is set up a SPAN port in the Tomoto wifi world. Here's how I did it...
 <!-- more -->

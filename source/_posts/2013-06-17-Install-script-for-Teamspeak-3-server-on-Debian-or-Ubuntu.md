@@ -1,6 +1,9 @@
 title: Install script for Teamspeak 3 server on Debian (or Ubuntu)
 date: 2013-06-17 19:39:00
 tags:
+- teamspeak3
+- serveradmin
+- programming
 ---
 The 'teamspeak-server' package built for Debian/Ubuntu at the time of writing this article is only for Teamspeak version 2, but everyone who is anyone these days uses TS3. After trolling around the Internet looking for a prebuilt package I could trust, I decided to roll my own install script. For the impatient **here are the steps to get a Teamspeak 3 server installed on Debian-based Linux quickly**:
 1. Try this in a test environment first! It requires root privileges and can take your children. You have been warned.

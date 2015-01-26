@@ -1,6 +1,9 @@
 title: Mount SSH on a Mac using Macports (aka the easy way)
 date: 2013-06-15 02:32:00
 tags:
+- macports
+- sshfs
+- serveradmin
 ---
 Often I would like to access files over SFTP but without the limitations of an FTP client. For example, it's handy to alter remote files directly in terminal as if they are local, or open them with my nice, fully fledged editor. Mucking around downloading/uploading files each time I modify them gets annoying quickly, especially with something fiddly like web development.
 

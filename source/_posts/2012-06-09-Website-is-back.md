@@ -1,6 +1,7 @@
 title: Website is back!
 date: 2012-06-09 00:33:00
 tags:
+- drupal
 ---
 Couldn't help it, had to put something here. I pulled down the site some months ago (perhaps as many as 12). I think the goal at the time was to upgrade to Drupal 7, but as often happens life got in the way.
 

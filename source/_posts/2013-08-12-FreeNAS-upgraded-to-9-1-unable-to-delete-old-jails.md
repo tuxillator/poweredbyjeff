@@ -1,6 +1,7 @@
 title: "FreeNAS upgraded to 9.1, unable to delete old jails"
 date: 2013-08-12 19:36:00
 tags:
+- serveradmin
 ---
 I just ran the [FreeNAS](http://www.freenas.org/) upgrade from 8.3 to 9.1. FreeNAS 9.1 adds the capability to run multiple jails (awesome feature by the way, thanks). After upgrading there was the usual slew of minor UI changes. I had installed [bacula](http://www.bacula.org/en/) earlier but never got around to configuring it, and hence wanted to remove/start fresh.
 

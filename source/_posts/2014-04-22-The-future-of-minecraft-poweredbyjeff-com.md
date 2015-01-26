@@ -1,6 +1,8 @@
 title: The future of minecraft.poweredbyjeff.com
 date: 2014-04-22 15:56:00
 tags:
+- minecraft
+- serveradmin
 ---
 **Updated 2014/12/8:**
 

@@ -1,6 +1,7 @@
 title: Redirect an old hostname to new hostname using mod_rewrite and Drupal
 date: 2013-08-10 16:27:00
 tags:
+- drupal
 ---
 I was browsing through the referer logs in my website and noticed Drupal was serving content to my old hostname, http://oolportal.com . SEO gurus also suggest it's a [bad idea to serve the same content from multiple domains](http://searchenginewatch.com/article/2219759/Multiple-Domain-Choice-SEO-Considerations-of-Single-vs.-Multiple-Domains), and that you can transfer link value using a redirect. Over the long run I want the references to all end up going to http://poweredbyjeff.com so it's time to take corrective action.
 
