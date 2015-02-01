@@ -1,7 +1,9 @@
 # Header
 menu:
   Home: /
-  Archives: /archives
+  TeamSpeak: ts3server://ts3.poweredbyjeff.com
+  Minecraft: /minecraft
+  Map: http://minecraft.poweredbyjeff.com
 rss: /atom.xml
 
 # Content
@@ -9,5 +11,5 @@ excerpt_link: Read More
 fancybox: true
 
 # Miscellaneous
-google_analytics:
+google_analytics: UA-43838521-1
 favicon: /favicon.png
