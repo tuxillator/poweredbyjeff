@@ -1,14 +1,12 @@
 title: Minecraft
 date: 2015-01-27 10:25:18
-updated: 2015-01-27 10:25:18
+updated: 2015-02-19 10:25:18
 ---
 *Arbiters as @ January 2015: Tuxillator, Sentrix141, GlennShade, Copats, Fudgious, Quara*
 
-Our server is running version 1.7.5 of Minecraft. You can view the world in a realtime map using the [map](http://minecraft.poweredbyjeff.com) button at the top of the page. We also have a Facebook group, contact an Arbiter in-game for an invite.
+You can view the world in a realtime map using the [map](http://minecraft.poweredbyjeff.com) button at the top of the page. We also have a Facebook group, contact an Arbiter in-game for an invite.
 
-## Joining our server
-
-**In the Minecraft Launcher, edit your profile and set "Use version" = "Release 1.7.5".**
+## Connecting to the server
 
 Server Name: Powered By Jeff
 Server Address: minecraft.poweredbyjeff.com
