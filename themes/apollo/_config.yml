@@ -1,10 +1,8 @@
 # Header
 menu:
   Home: /
-  TeamSpeak: ts3server://ts3.poweredbyjeff.com
-  Minecraft: /minecraft
-  Map: http://minecraft.poweredbyjeff.com
-rss: /atom.xml
+  Discord: https://discord.gg/vet2u5J
+  Résumé: /jeff-ferrari-resume
 
 # Content
 excerpt_link: Read More
