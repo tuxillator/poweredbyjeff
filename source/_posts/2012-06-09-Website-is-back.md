@@ -4,7 +4,7 @@ tags:
 - drupal
 ---
 Couldn't help it, had to put something here. I pulled down the site some months ago (perhaps as many as 12). I think the goal at the time was to upgrade to Drupal 7, but as often happens life got in the way.
-
+<!-- more -->
 Some key goals with this site:
 
 * Easy to maintain - Drupal 7 does the trick here, I'm familiar with it and it's looking pretty kick ass out of the box.

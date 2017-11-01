@@ -7,5 +7,6 @@ Earlier in the year I completed my PADI Rescue course. For those that enjoy divi
 
 Without further ado, here it is! If you're interested, the original PDFs are downloadable and printable when going to Tioman. Of course the usual disclaimer - please take out insurance, and I don't guarantee the accuracy/updatedness of this document. Be a real diver, do your own preparation and dive safe. Peace!
 
-[Emergency Action Plan (pdf)](/files/EAP.pdf)
-[Flowchart (pdf)](/files/EAPflowchart.pdf)
+[Emergency Action Plan (pdf)](EAP.pdf)
+[Flowchart (pdf)](EAPflowchart.pdf)
+<!-- more -->

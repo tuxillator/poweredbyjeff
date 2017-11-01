@@ -8,3 +8,4 @@ Yeah, I'm a geek - I'm running my own Minecraft server. In case it isn't obvious
 Anyways, feel free to drop in.
 
 Minecraft server address: minecraft.poweredbyjeff.com
+<!-- more -->

@@ -11,7 +11,7 @@ So after much consideration, I updated and tightened my private Minecraft server
 * Contact any Arbiter to get promoted to build access.
 
 My brief notes here only cover the software side of the setup; I'll be doing something interesting once I build out my new home hypervisor (currently waiting on 1GB/s internet connection to get installed).
-
+<!-- more -->
 A few enhancements/game philosophy changes:
 
 * Rolled back to our old map, aka the "Sanctum" map. I found the regulars didn't play as much as the feeling of effort involved in the old map was lost. For the folks that built in the new world, I moved them to the old map via WorldEdit.

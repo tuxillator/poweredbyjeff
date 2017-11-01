@@ -6,8 +6,8 @@ tags:
 I just ran the [FreeNAS](http://www.freenas.org/) upgrade from 8.3 to 9.1. FreeNAS 9.1 adds the capability to run multiple jails (awesome feature by the way, thanks). After upgrading there was the usual slew of minor UI changes. I had installed [bacula](http://www.bacula.org/en/) earlier but never got around to configuring it, and hence wanted to remove/start fresh.
 
 Unfortunately the jails did not migrate so cleanly on the UI. Additionally when I attempted to remove the installed bacula plugin it resulted in an error saying the jail does not exist.
-
-![bacula](/images/bacula.png)
+<!-- more -->
+![bacula](bacula.png)
 
 *The above screenshot is taken after the migration command was run. Before this the "jail" field was blank.*
 

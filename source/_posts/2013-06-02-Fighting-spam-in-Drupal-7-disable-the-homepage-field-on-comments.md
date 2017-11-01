@@ -5,7 +5,7 @@ tags:
 - programming
 ---
 Spam is really annoying, particularly for anybody maintaining a website with anonymous contribution - in my case via comments. Mollum filters the bulk of the spammers out. Unfortunately if you want to capture anonymous commenter's contact information in Drupal 7 this also exposes and displays the homepage field. This is also displayed to all visitors to your website that can access this content - incentive for link spammers :(
-
+<!-- more -->
 If you don't care about following up with your commenters, or you only allow commenting by registered users - the email and homepage field on anonymous comments can be disabled here:
 
 Administration -> Structure -> Content Types -> [choose relevant content type] -> Comment settings -> Anonymous commenting

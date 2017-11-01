@@ -4,7 +4,7 @@ tags:
 - macports
 - mongodb
 ---
-I had problems getting MongoDB to start using launchd (my preferred method for portability) after a fresh Yosemite install. After initially suspecting the _mongo user was not being correctly created by the Macports installation script, it turned out to be a simple permissions issue. <!-- more --> After doing:
+I had problems getting MongoDB to start using launchd (my preferred method for portability) after a fresh Yosemite install. After initially suspecting the `_mongo` user was not being correctly created by the Macports installation script, it turned out to be a simple permissions issue. <!-- more --> After doing:
 ```
 sudo port load mongodb
 ```
@@ -22,7 +22,7 @@ open /opt/local/etc/LaunchDaemons/org.macports.mongodb/org.macports.mongodb.plis
 ```
 This revealed the user account, and a variety of dependent files/folders that launchd was looking for to start this service. Of note:
 
-_mongo - the user the server process will run under
+`_mongo` - the user the server process will run under
 
 /opt/local/bin/mongod - the folder where the server binary is located
 
@@ -34,7 +34,7 @@ First and most obvious, I checked if the system account existed:
 ```
 dscl . -ls /Users | grep mongo
 ```
-Looked fine, I saw _mongo as expected per the daemon plist. Turns out in my case something (another Macports package most likely) had changed the permissions for one of the parent folders of the log file. This resolved for me:
+Looked fine, I saw `_mongo` as expected per the daemon plist. Turns out in my case something (another Macports package most likely) had changed the permissions for one of the parent folders of the log file. This resolved for me:
 ```
 sudo chmod 755 /opt/local/var/log
 ```
