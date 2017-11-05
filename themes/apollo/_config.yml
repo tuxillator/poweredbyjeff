@@ -1,6 +1,8 @@
 # Header
 menu:
-  Home: /
+  Blog: /
+  Archive: /archives/
+  GitHub: https://github.com/tuxillator
   Discord: https://discord.gg/vet2u5J
   Résumé: /resume
 
