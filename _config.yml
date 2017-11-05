@@ -76,6 +76,8 @@ theme: apollo
 plugin:
   hexo-generator-cname
 
+disqus_shortname: tuxillator
+
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
