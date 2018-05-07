@@ -1,0 +1,3 @@
+[submodule ".deploy_git"]
+	path = .deploy_git
+	url = git@github.com:tuxillator/tuxillator.github.io.git
