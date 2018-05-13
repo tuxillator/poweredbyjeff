@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Deploy a Hexo blog to Github Pages | Powered By Jeff</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="Hexo is a powerful static website generator that can be combined with Github Pages to run a personal blog. This pairing is a convenient, performant and free blogging platform that is very flexible and">
+<meta name="keywords" content="hexo,cname,github">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deploy a Hexo blog to Github Pages">
+<meta property="og:url" content="https://www.poweredbyjeff.com/2018/05/14/Deploying-Hexo-website-to-Github-Pages/index.html">
+<meta property="og:site_name" content="Powered By Jeff">
+<meta property="og:description" content="Hexo is a powerful static website generator that can be combined with Github Pages to run a personal blog. This pairing is a convenient, performant and free blogging platform that is very flexible and">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-05-13T18:40:02.287Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Deploy a Hexo blog to Github Pages">
+<meta name="twitter:description" content="Hexo is a powerful static website generator that can be combined with Github Pages to run a personal blog. This pairing is a convenient, performant and free blogging platform that is very flexible and">
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43838521-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="mobile-nav-panel">
+	<i class="icon-reorder icon-large"></i>
+</div>
+<header id="header">
+	<h1 class="blog-title">
+		<a href="/">Powered By Jeff</a>
+	</h1>
+	<nav class="nav">
+		<ul>
+			<li><a href="https://github.com/tuxillator">GitHub</a></li><li><a href="https://discord.gg/vet2u5J">Discord</a></li><li><a href="https://www.instagram.com/tuxillator/">Instagram</a></li><li><a href="http://www.linkedin.com/in/jjferrari">LinkedIn</a></li>
+		</ul>
+	</nav>
+</header>
+
+    <div id="main">
+      <article id="post-Deploying-Hexo-website-to-Github-Pages" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2018/05/14/Deploying-Hexo-website-to-Github-Pages/" class="article-date">
+  <time datetime="2018-05-13T16:00:00.000Z" itemprop="datePublished">2018-05-14</time>
+</a>
+		</span>
+		<span class="meta-elements author">Jeff Ferrari</span>
+		<div class="commentscount">
+			
+				<a href="https://www.poweredbyjeff.com/2018/05/14/Deploying-Hexo-website-to-Github-Pages/#disqus_thread" class="article-comment-link">Comments</a>
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 class="article-title entry-title" itemprop="name">
+      Deploy a Hexo blog to Github Pages
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<p><a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> is a powerful static website generator that can be combined with <a href="https://pages.github.com" target="_blank" rel="noopener">Github Pages</a> to run a personal blog. This pairing is a convenient, performant and free blogging platform that is very flexible and relatively simple.</p>
+<p>Most instructions make running this combination more complicated than it needs to be. If you’re already using Github to publish your Hexo blog, read on to learn how to update your workflow and eliminate some plugins.<br><a id="more"></a></p>
+<h2 id="tl-dr"><a href="#tl-dr" class="headerlink" title="tl;dr"></a>tl;dr</h2><p>For the impatient already using Hexo and Github Pages but publishing on <code>&lt;username&gt;.github.io</code> repositories, here’s how you convert.</p>
+<h3 id="Step-1-On-Github"><a href="#Step-1-On-Github" class="headerlink" title="Step 1: On Github"></a>Step 1: On Github</h3><ul>
+<li>Create a new repository to store both your Hexo instance and generated website (I suggest naming after your website)</li>
+<li>Note down the repo address for later.</li>
+</ul>
+<h3 id="Step-2-In-your-Hexo-folder"><a href="#Step-2-In-your-Hexo-folder" class="headerlink" title="Step 2: In your Hexo folder"></a>Step 2: In your Hexo folder</h3><ul>
+<li>Remove existing conflicting plugins:<ul>
+<li><code>npm uninstall hexo-generator-cname hexo-deployer-git</code></li>
+<li>Remove related plugin configuration in <code>_config.yml</code></li>
+</ul>
+</li>
+<li>Add the CNAME file (no extension, all uppercase). The contents of this file should be the domain of your website, e.g. <code>www.poweredbyjeff.com</code></li>
+<li>Set <code>public_dir: docs</code> in <code>_config.yml</code>.</li>
+<li>Add the Hexo folder to git, add Github repository created in Step 1 as origin and push to origin.</li>
+</ul>
+<h3 id="Step-3-On-Github"><a href="#Step-3-On-Github" class="headerlink" title="Step 3: On Github"></a>Step 3: On Github</h3><ul>
+<li>Disable Github Pages on your existing <code>&lt;username&gt;.github.io</code> repository</li>
+<li>Rename that repository (or delete it if you’re super confident)</li>
+<li>Enable Github Pages on the repository created in Step 1 and choose the <em>master branch /docs folder</em> option.</li>
+<li>Eat cake.</li>
+</ul>
+<h2 id="The-background"><a href="#The-background" class="headerlink" title="The background"></a>The background</h2><p><a href="https://help.github.com/articles/configuring-a-publishing-source-for-github-pages/" target="_blank" rel="noopener">Github Pages</a> content can come from one of 3 locations:</p>
+<ul>
+<li>master branch of <code>&lt;username&gt;.github.io</code> repository</li>
+<li>a <code>gh-pages</code> branch from your repository</li>
+<li>a <code>docs</code> subdirectory</li>
+</ul>
+<p>Most existing tutorials guide you to create a new repository according to the first option. If you do that you probably end up with 2 repos like I did:</p>
+<ul>
+<li><a href="https://github.com/tuxillator/poweredbyjeff" target="_blank" rel="noopener">poweredbyjeff</a> (stores Hexo folder containing markdown, themes, config, etc)</li>
+<li><a href="https://github.com/tuxillator/tuxillator.github.io" target="_blank" rel="noopener">tuxillator.github.io</a> (stores and publishes the actual website generated by Hexo)</li>
+</ul>
+<p>By default Hexo will generate content into a folder called <code>public</code>. This is configurable via the <code>public_dir</code> setting in <code>_config.yml</code>, so conveniently I could enable Github Pages using the <code>docs</code> subdirectory on my poweredbyjeff repo and do away with one repo. This also has the advantage of allowing me to publish other static websites using different repositories on Github Pages.</p>
+<p>If you look carefully at the Github Pages documentation however, there’s a limitation:</p>
+<blockquote>
+<p>If your site is a User or Organization Page that has a repository named <code>&lt;username&gt;.github.io</code> or <code>&lt;orgname&gt;.github.io</code>, you cannot publish your site’s source files from different locations.</p>
+</blockquote>
+<p>If you blinked and missed it, once you have a github.io repository you can’t use the docs/ folder on any repos. So make sure you disable/rename that existing repo if you’re using it.</p>
+<h2 id="Advantages"><a href="#Advantages" class="headerlink" title="Advantages"></a>Advantages</h2><ul>
+<li>Source is now stored in the same Github repository as the generated website</li>
+<li>Do not need <code>hexo-generator-cname</code> or <code>hexo-deployer-git</code> plugins</li>
+<li>Deploy is simply push to Github (which coincidentally backs up your source)</li>
+</ul>
+<p>Feel free to leave comments or questions below. Enjoy!</p>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cname/">cname</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+
+			</span>
+		</div>
+	</footer>
+	
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/05/08/Intermittent-blogging-life-good-times-and-bad/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          Intermittent blogging, life, good times and bad
+        
+      </div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+    </div>
+    <footer id="footer">
+	<h1 class="footer-blog-title">
+		<a href="/">Powered By Jeff</a>
+	</h1>
+	<span class="copyright">
+		&copy; 2018 Jeff Ferrari<br>
+		The official website of Jeff Ferrari
+	</span>
+</footer>
+
+    
+<script>
+  var disqus_shortname = 'tuxillator';
+  
+  var disqus_url = 'https://www.poweredbyjeff.com/2018/05/14/Deploying-Hexo-website-to-Github-Pages/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

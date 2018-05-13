@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Erlang B Visual Basic implementation for use in Excel | Powered By Jeff</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="Erlang B is a commonly used algorithm used to estimate required capacity for a given load. Originating in telephony for estimating required trunks/channels for an expected load, this same algorithm ca">
+<meta name="keywords" content="programming">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Erlang B Visual Basic implementation for use in Excel">
+<meta property="og:url" content="https://www.poweredbyjeff.com/2013/08/10/Erlang-B-Visual-Basic-implementation-for-use-in-Excel/index.html">
+<meta property="og:site_name" content="Powered By Jeff">
+<meta property="og:description" content="Erlang B is a commonly used algorithm used to estimate required capacity for a given load. Originating in telephony for estimating required trunks/channels for an expected load, this same algorithm ca">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-11-01T08:05:15.444Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Erlang B Visual Basic implementation for use in Excel">
+<meta name="twitter:description" content="Erlang B is a commonly used algorithm used to estimate required capacity for a given load. Originating in telephony for estimating required trunks/channels for an expected load, this same algorithm ca">
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43838521-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="mobile-nav-panel">
+	<i class="icon-reorder icon-large"></i>
+</div>
+<header id="header">
+	<h1 class="blog-title">
+		<a href="/">Powered By Jeff</a>
+	</h1>
+	<nav class="nav">
+		<ul>
+			<li><a href="https://github.com/tuxillator">GitHub</a></li><li><a href="https://discord.gg/vet2u5J">Discord</a></li><li><a href="https://www.instagram.com/tuxillator/">Instagram</a></li><li><a href="http://www.linkedin.com/in/jjferrari">LinkedIn</a></li>
+		</ul>
+	</nav>
+</header>
+
+    <div id="main">
+      <article id="post-Erlang-B-Visual-Basic-implementation-for-use-in-Excel" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2013/08/10/Erlang-B-Visual-Basic-implementation-for-use-in-Excel/" class="article-date">
+  <time datetime="2013-08-10T05:43:00.000Z" itemprop="datePublished">2013-08-10</time>
+</a>
+		</span>
+		<span class="meta-elements author">Jeff Ferrari</span>
+		<div class="commentscount">
+			
+				<a href="https://www.poweredbyjeff.com/2013/08/10/Erlang-B-Visual-Basic-implementation-for-use-in-Excel/#disqus_thread" class="article-comment-link">Comments</a>
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 class="article-title entry-title" itemprop="name">
+      Erlang B Visual Basic implementation for use in Excel
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<p>Erlang B is a commonly used algorithm used to estimate required capacity for a given load. Originating in telephony for estimating required trunks/channels for an expected load, this same algorithm can be applied to any problem where you have a known arrival rate and required Grade of Service - e.g. servers required for given web traffic, lanes required for given car traffic, staff required for given customers  in a retail shop, etc. I’m by no means an expert on the algorithm (it involves poisson distributions and clever things mathematicians get exited about). I do however use it so need it available in a format that doesn’t require a maths degree or regularly going to websites, hence Excel. Note also that this does not account for queuing (Erlang C for that) so may not be suitable where you expect and accept a queue, e.g. customers in your store can wait a few minutes and would not typically mind.<br><a id="more"></a><br>For the layman, the algorithm boils down to 3 components:</p>
+<p><strong>Grade of Service</strong> = the probability that the service is “busy”. For telephony, this is the % of time that customers get a busy message due to all trunks being consumed. In a web environment it would be how often your users hit a “busy” message from your website due to all capacity being consumed. You set this to a desired level based on your business needs, .5% is quite conservative and works for me. A higher value means you will install less circuits/servers etc which is cheaper, at the cost of increased probability that your service is unavailable to your customers.</p>
+<p><strong>Erlangs</strong> = the <a href="http://en.wikipedia.org/wiki/Erlang_(unit)" target="_blank" rel="noopener">definition is on Wikipedia</a>, but this is basically a dimensionless measure of arriving volume, aka load. Don’t confuse with the <a href="http://en.wikipedia.org/wiki/Erlang_(programming_language)" target="_blank" rel="noopener">programming language</a>. Put simply it is the number of calls/web requests/customers arriving per second/minute/hour/day multiplied by the average time taken to “complete” each request. If each customer in your store takes 6 minutes to handle, and you expect 100 customers per hour, you would have (100 <em> 60) </em> 5 = 10 Erlangs. Generally you would measure this over a long period of time and pick your busiest hour to scale capacity.</p>
+<p><strong>Circuits</strong> (or servers, or counter staff, lanes on the road, etc) = these are basically the consumers of the “load”. This is usually what you are trying to figure out so you can scale appropriately.</p>
+<p>Below is a Visual Basic implementation of Erlang B based on the <a href="http://www.cas.mcmaster.ca/~qiao/publications/erlang.pdf" target="_blank" rel="noopener">pseudo-code algorithms in the paper by Sanzheng Qiao</a>. To use it, create a new file called “erlangb.bas” and import it as a module into the Excel spreadsheet you wish to use it with. You will then have access to 2 User Defined Functions (UDF):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ErlangB_GoS(erlangs, capacity)</span><br><span class="line"></span><br><span class="line">ErlangB_Circuits(erlangs, GoS)</span><br></pre></td></tr></table></figure></p>
+<p>The main one of use is <code>ErlangB_Circuits</code>. Once you have your Erlangs (perhaps from historic data or forecast) and an agreed target GoS, you can then figure out how many circuits/servers/people you need to service the given load.</p>
+<p>There is more in the article that I did not implement (e.g. ErlangC) as I didn’t need it for the job at hand, but I leave that as a reader exercise to complete and leave in the comments :)</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">Attribute VB_Name = <span class="string">"ErlangB"</span></span><br><span class="line"><span class="keyword">Option</span> <span class="keyword">Explicit</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">' Erlang-B module based on algorithm at http://www.cas.mcmaster.ca/~qiao/publications/erlang.pdf</span></span><br><span class="line"><span class="comment">' Jeff Ferrari</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">' note - make sure the iteration limit is set in Excel (see calculations preferences) to avoid circular reference errors</span></span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="comment">' given the busy hour traffic (erlangs) and capacity (circuits)</span></span><br><span class="line"><span class="comment">' returns the Grade of Service (GoS)</span></span><br><span class="line"><span class="comment">' assert erlangs and capacity are non-negative</span></span><br><span class="line"><span class="keyword">Function</span> ErlangB_GoS(erlangs <span class="keyword">As</span> <span class="built_in">Double</span>, capacity <span class="keyword">As</span> <span class="built_in">Integer</span>) <span class="keyword">As</span> <span class="built_in">Double</span></span><br><span class="line">   <span class="keyword">Dim</span> s <span class="keyword">As</span> <span class="built_in">Double</span></span><br><span class="line">   <span class="keyword">Dim</span> i <span class="keyword">As</span> <span class="built_in">Integer</span></span><br><span class="line"> </span><br><span class="line">   <span class="keyword">If</span> erlangs = <span class="number">0</span> <span class="keyword">Then</span></span><br><span class="line">       ErlangB_GoS = <span class="number">0</span></span><br><span class="line">       <span class="keyword">Exit</span> <span class="keyword">Function</span></span><br><span class="line">   <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"> </span><br><span class="line">   s = <span class="number">0</span></span><br><span class="line">   <span class="keyword">For</span> i = <span class="number">1</span> <span class="keyword">To</span> capacity</span><br><span class="line">       s = (<span class="number">1</span> + s) * i / erlangs</span><br><span class="line">   <span class="keyword">Next</span></span><br><span class="line">   ErlangB_GoS = <span class="number">1</span> / (<span class="number">1</span> + s)</span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Function</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">' given the busy hour traffic (erlangs) and Grade of Service (GoS)</span></span><br><span class="line"><span class="comment">' returns the capacity(circuits) consumed by above traffic while still meeting GoS</span></span><br><span class="line"><span class="keyword">Function</span> ErlangB_Circuits(erlangs <span class="keyword">As</span> <span class="built_in">Double</span>, GoS <span class="keyword">As</span> <span class="built_in">Double</span>) <span class="keyword">As</span> <span class="built_in">Double</span></span><br><span class="line">   <span class="keyword">Dim</span> rightendpointCapacity <span class="keyword">As</span> <span class="built_in">Integer</span></span><br><span class="line">   <span class="keyword">Dim</span> leftendpointCapacity <span class="keyword">As</span> <span class="built_in">Integer</span></span><br><span class="line">   <span class="keyword">Dim</span> midCapacity <span class="keyword">As</span> <span class="built_in">Integer</span></span><br><span class="line">   <span class="keyword">Dim</span> currentGoS <span class="keyword">As</span> <span class="built_in">Double</span></span><br><span class="line"> </span><br><span class="line">   <span class="comment">' find initial rough interval in which our target resides</span></span><br><span class="line">   currentGoS = ErlangB_GoS(erlangs, rightendpointCapacity)</span><br><span class="line">   <span class="keyword">Do</span> <span class="keyword">While</span> currentGoS &gt; GoS</span><br><span class="line">       leftendpointCapacity = rightendpointCapacity</span><br><span class="line">       rightendpointCapacity = rightendpointCapacity + <span class="number">32</span></span><br><span class="line">       currentGoS = ErlangB_GoS(erlangs, rightendpointCapacity)</span><br><span class="line">   <span class="keyword">Loop</span></span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">   <span class="comment">' find capacity using bisection</span></span><br><span class="line">   <span class="keyword">Do</span> <span class="keyword">While</span> (rightendpointCapacity - leftendpointCapacity) &gt; <span class="number">1</span></span><br><span class="line">       midCapacity = (leftendpointCapacity + rightendpointCapacity) / <span class="number">2</span></span><br><span class="line">       currentGoS = ErlangB_GoS(erlangs, midCapacity)</span><br><span class="line">       <span class="keyword">If</span> currentGoS &gt; GoS <span class="keyword">Then</span></span><br><span class="line">           leftendpointCapacity = midCapacity</span><br><span class="line">       <span class="keyword">Else</span></span><br><span class="line">           rightendpointCapacity = midCapacity</span><br><span class="line">       <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"> </span><br><span class="line">   <span class="keyword">Loop</span></span><br><span class="line"> </span><br><span class="line">   ErlangB_Circuits = rightendpointCapacity</span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Function</span></span><br></pre></td></tr></table></figure>
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">programming</a></li></ul>
+
+			</span>
+		</div>
+	</footer>
+	
+    
+<nav id="article-nav">
+  
+    <a href="/2013/08/10/Redirect-an-old-hostname-to-new-hostname-using-mod-rewrite-and-Drupal/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Redirect an old hostname to new hostname using mod_rewrite and Drupal
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2013/08/10/Jeff-s-Minecraft-server/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          Jeff&#39;s Minecraft server
+        
+      </div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+    </div>
+    <footer id="footer">
+	<h1 class="footer-blog-title">
+		<a href="/">Powered By Jeff</a>
+	</h1>
+	<span class="copyright">
+		&copy; 2018 Jeff Ferrari<br>
+		The official website of Jeff Ferrari
+	</span>
+</footer>
+
+    
+<script>
+  var disqus_shortname = 'tuxillator';
+  
+  var disqus_url = 'https://www.poweredbyjeff.com/2013/08/10/Erlang-B-Visual-Basic-implementation-for-use-in-Excel/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

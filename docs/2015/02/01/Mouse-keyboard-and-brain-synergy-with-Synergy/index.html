@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Mouse keyboard and brain synergy with Synergy | Powered By Jeff</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="I’m a big fan of Teleport on Mac OS X. If you’ve never used it before, you probably haven’t had to work with more than 1 Mac at a time. I’m not talking about remote access (SSH is my tool of choice fo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mouse keyboard and brain synergy with Synergy">
+<meta property="og:url" content="https://www.poweredbyjeff.com/2015/02/01/Mouse-keyboard-and-brain-synergy-with-Synergy/index.html">
+<meta property="og:site_name" content="Powered By Jeff">
+<meta property="og:description" content="I’m a big fan of Teleport on Mac OS X. If you’ve never used it before, you probably haven’t had to work with more than 1 Mac at a time. I’m not talking about remote access (SSH is my tool of choice fo">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-11-01T08:05:15.456Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mouse keyboard and brain synergy with Synergy">
+<meta name="twitter:description" content="I’m a big fan of Teleport on Mac OS X. If you’ve never used it before, you probably haven’t had to work with more than 1 Mac at a time. I’m not talking about remote access (SSH is my tool of choice fo">
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43838521-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="mobile-nav-panel">
+	<i class="icon-reorder icon-large"></i>
+</div>
+<header id="header">
+	<h1 class="blog-title">
+		<a href="/">Powered By Jeff</a>
+	</h1>
+	<nav class="nav">
+		<ul>
+			<li><a href="https://github.com/tuxillator">GitHub</a></li><li><a href="https://discord.gg/vet2u5J">Discord</a></li><li><a href="https://www.instagram.com/tuxillator/">Instagram</a></li><li><a href="http://www.linkedin.com/in/jjferrari">LinkedIn</a></li>
+		</ul>
+	</nav>
+</header>
+
+    <div id="main">
+      <article id="post-Mouse-keyboard-and-brain-synergy-with-Synergy" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2015/02/01/Mouse-keyboard-and-brain-synergy-with-Synergy/" class="article-date">
+  <time datetime="2015-02-01T11:01:49.000Z" itemprop="datePublished">2015-02-01</time>
+</a>
+		</span>
+		<span class="meta-elements author">Jeff Ferrari</span>
+		<div class="commentscount">
+			
+				<a href="https://www.poweredbyjeff.com/2015/02/01/Mouse-keyboard-and-brain-synergy-with-Synergy/#disqus_thread" class="article-comment-link">Comments</a>
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 class="article-title entry-title" itemprop="name">
+      Mouse keyboard and brain synergy with Synergy
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<p>I’m a big fan of <a href="http://www.abyssoft.com/software/teleport/" target="_blank" rel="noopener">Teleport</a> on Mac OS X. If you’ve never used it before, you probably haven’t had to work with more than 1 Mac at a time. I’m not talking about remote access (SSH is my tool of choice for remote access). This is for an extended desktop experience with physically distinct machines. My mouse is connected to the Windows machine in the middle, Mac OS X on the laptop to the left and the Ubuntu guest VM console on the right all feel like one “extended desktop”.</p>
+<p>The problem with the tool is it’s platform specific… no workie with Windows or Linux. After some google-fu the currently accepted alternative is <a href="http://synergy-project.org/" target="_blank" rel="noopener">Synergy</a>. It’s basically a cross-platform tool that does the same thing - allow a computer to share keyboard and mouse to hosts on the LAN. It’s very nice, but here’s some gotchas along with solutions I found along the way…<br><a id="more"></a></p>
+<h2 id="Windows-DPI-scaling-breaks-mouse-movement"><a href="#Windows-DPI-scaling-breaks-mouse-movement" class="headerlink" title="Windows DPI scaling breaks mouse movement"></a>Windows DPI scaling breaks mouse movement</h2><p>After installing, configuring and enabling I was able to move the mouse once it went to the remote machine. This included moving it back… in essence the mouse and keyboard were “stuck”. To resolve this:</p>
+<ul>
+<li>I stopped Synergy on the remote machine. This caused mouse control to return to the main computer.</li>
+<li>It turned out to be <a href="https://github.com/synergy/synergy/issues/4041" target="_blank" rel="noopener">this issue</a>, so I disabled Windows DPI scaling on the synergys.exe (note the extra “s”)<br>Restarting on both ends it now worked. </li>
+<li>As a learning, I added a hotkey to send the keyboard back to the main computer in case I got stuck remote again.</li>
+</ul>
+<h2 id="Long-wireless-beacon-causes-intermittent-lag"><a href="#Long-wireless-beacon-causes-intermittent-lag" class="headerlink" title="Long wireless beacon causes intermittent lag"></a>Long wireless beacon causes intermittent lag</h2><p>I also had a problem where input took time to “restart” if I stopped doing things in the client. For example, I move my mouse over to the remote machine. At this point moving the mouse around and typing is flawless. If I stop for about 5 seconds, then start again there is a very obvious delay before input is recognised again.</p>
+<p>Turns out this was to do with wireless settings in my router. I’m running Tomato firwmware on my router, and at some point in an effort to reduce noise had increased the Beacon Interval to 1000. Reducing this back to the 100ms resolved my issue. Thanks to <a href="http://superuser.com/questions/553125/synergy-choppiness-is-my-wireless-router-delaying-packets-after-silent-period" target="_blank" rel="noopener">this thread</a> for putting me on the right path to resolve.</p>
+<p>All up the tool is great - I’ve only just began using it, but already it’s getting out of the way and letting me get things done.</p>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+			</span>
+		</div>
+	</footer>
+	
+    
+<nav id="article-nav">
+  
+    <a href="/2015/10/29/Intel-750-SSD-in-Debian-Jessie/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Installing and booting to Intel 750 SSD in Debian 8
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/01/31/CanaryMod-plugin-tutorial/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          CanaryMod plugin tutorial
+        
+      </div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+    </div>
+    <footer id="footer">
+	<h1 class="footer-blog-title">
+		<a href="/">Powered By Jeff</a>
+	</h1>
+	<span class="copyright">
+		&copy; 2018 Jeff Ferrari<br>
+		The official website of Jeff Ferrari
+	</span>
+</footer>
+
+    
+<script>
+  var disqus_shortname = 'tuxillator';
+  
+  var disqus_url = 'https://www.poweredbyjeff.com/2015/02/01/Mouse-keyboard-and-brain-synergy-with-Synergy/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

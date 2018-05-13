@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>My ideal Minecraft server buildout (v3) | Powered By Jeff</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="So after much consideration, I updated and tightened my private Minecraft server. TL;DR:  Minecraft server hostname (copy/paste to join): minecraft.poweredbyjeff.com Teamspeak3: ts3.poweredbyjeff.com">
+<meta name="keywords" content="serveradmin,minecraft">
+<meta property="og:type" content="article">
+<meta property="og:title" content="My ideal Minecraft server buildout (v3)">
+<meta property="og:url" content="https://www.poweredbyjeff.com/2014/03/22/My-ideal-Minecraft-server-buildout-v3/index.html">
+<meta property="og:site_name" content="Powered By Jeff">
+<meta property="og:description" content="So after much consideration, I updated and tightened my private Minecraft server. TL;DR:  Minecraft server hostname (copy/paste to join): minecraft.poweredbyjeff.com Teamspeak3: ts3.poweredbyjeff.com">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-11-01T08:05:15.448Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="My ideal Minecraft server buildout (v3)">
+<meta name="twitter:description" content="So after much consideration, I updated and tightened my private Minecraft server. TL;DR:  Minecraft server hostname (copy/paste to join): minecraft.poweredbyjeff.com Teamspeak3: ts3.poweredbyjeff.com">
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43838521-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="mobile-nav-panel">
+	<i class="icon-reorder icon-large"></i>
+</div>
+<header id="header">
+	<h1 class="blog-title">
+		<a href="/">Powered By Jeff</a>
+	</h1>
+	<nav class="nav">
+		<ul>
+			<li><a href="https://github.com/tuxillator">GitHub</a></li><li><a href="https://discord.gg/vet2u5J">Discord</a></li><li><a href="https://www.instagram.com/tuxillator/">Instagram</a></li><li><a href="http://www.linkedin.com/in/jjferrari">LinkedIn</a></li>
+		</ul>
+	</nav>
+</header>
+
+    <div id="main">
+      <article id="post-My-ideal-Minecraft-server-buildout-v3" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2014/03/22/My-ideal-Minecraft-server-buildout-v3/" class="article-date">
+  <time datetime="2014-03-22T10:00:00.000Z" itemprop="datePublished">2014-03-22</time>
+</a>
+		</span>
+		<span class="meta-elements author">Jeff Ferrari</span>
+		<div class="commentscount">
+			
+				<a href="https://www.poweredbyjeff.com/2014/03/22/My-ideal-Minecraft-server-buildout-v3/#disqus_thread" class="article-comment-link">Comments</a>
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 class="article-title entry-title" itemprop="name">
+      My ideal Minecraft server buildout (v3)
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<p>So after much consideration, I updated and tightened my private Minecraft server. TL;DR:</p>
+<ul>
+<li>Minecraft server hostname (copy/paste to join): minecraft.poweredbyjeff.com</li>
+<li>Teamspeak3: <a href="ts3server://ts3.poweredbyjeff.com" target="_blank" rel="noopener">ts3.poweredbyjeff.com</a></li>
+<li>Contact any Arbiter to get promoted to build access.</li>
+</ul>
+<p>My brief notes here only cover the software side of the setup; I’ll be doing something interesting once I build out my new home hypervisor (currently waiting on 1GB/s internet connection to get installed).<br><a id="more"></a><br>A few enhancements/game philosophy changes:</p>
+<ul>
+<li>Rolled back to our old map, aka the “Sanctum” map. I found the regulars didn’t play as much as the feeling of effort involved in the old map was lost. For the folks that built in the new world, I moved them to the old map via WorldEdit.<br>Moved to Spigot, latest version. If you are a Minecraft server admin (big or small) and are not using this, you haven’t lived.<br>Set up BungeeCord in front of the setup. This is a simple but very powerful proxy for the Minecraft protocol. At the moment I only use this as a convenient way for me to run a testing server beside the main one transparently, and run some custom game modes/“resettable” servers. This will help if I choose to move to a local hypervisor.</li>
+<li>Created a “Lobby” world, both for aesthetics (it looks like heaven!) and a convenient way to mix and match Bungee portals with Multiverse portals transparently to the players.</li>
+<li>Set up a CNAME record of minecraft.poweredbyjeff.com to prepare the move of the server to my house.</li>
+<li>Rebuilt the server folder from the ground up. Cut out some rubbish plugins. Set the “world” folder in spigot.yml to prevent rubbish acculating in the root of each server.</li>
+<li>Moved to a tmux style server management model. All the scripts I looked at were either crippled/unmaintained since 1.7 was released or paid. I’m a tightass on principle here, so opted for run my own. Screen also sucks balls; tmux is another thing you had better try before you die from being throttle to legacy death by Screen.</li>
+</ul>
+<p>The main outstanding issue is automated backup and crash recovery, which is not a small item. The backup process is manual at the moment and has a pretty big flaw (that being me :) ). Feel free to ask more about my setup in the comments.</p>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/minecraft/">minecraft</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/serveradmin/">serveradmin</a></li></ul>
+
+			</span>
+		</div>
+	</footer>
+	
+    
+<nav id="article-nav">
+  
+    <a href="/2014/04/22/The-future-of-minecraft-poweredbyjeff-com/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          The future of minecraft.poweredbyjeff.com
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2013/08/12/FreeNAS-upgraded-to-9-1-unable-to-delete-old-jails/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          FreeNAS upgraded to 9.1, unable to delete old jails
+        
+      </div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+    </div>
+    <footer id="footer">
+	<h1 class="footer-blog-title">
+		<a href="/">Powered By Jeff</a>
+	</h1>
+	<span class="copyright">
+		&copy; 2018 Jeff Ferrari<br>
+		The official website of Jeff Ferrari
+	</span>
+</footer>
+
+    
+<script>
+  var disqus_shortname = 'tuxillator';
+  
+  var disqus_url = 'https://www.poweredbyjeff.com/2014/03/22/My-ideal-Minecraft-server-buildout-v3/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>
