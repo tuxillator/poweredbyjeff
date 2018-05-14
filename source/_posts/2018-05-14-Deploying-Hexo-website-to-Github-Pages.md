@@ -9,27 +9,6 @@ tags:
 Most instructions make running this combination more complicated than it needs to be. If you're already using Github to publish your Hexo blog, read on to learn how to update your workflow and eliminate some plugins.
 <!-- more -->
 
-## tl;dr
-For the impatient already using Hexo and Github Pages but publishing on `<username>.github.io` repositories, here's how you convert.
-
-### Step 1: On Github
-* Create a new repository to store both your Hexo instance and generated website (I suggest naming after your website)
-* Note down the repo address for later.
-
-### Step 2: In your Hexo folder
-* Remove existing conflicting plugins:
-  * `npm uninstall hexo-generator-cname hexo-deployer-git`
-  * Remove related plugin configuration in `_config.yml`
-* Add the CNAME file (no extension, all uppercase). The contents of this file should be the domain of your website, e.g. `www.poweredbyjeff.com`
-* Set `public_dir: docs` in `_config.yml`.
-* Add the Hexo folder to git, add Github repository created in Step 1 as origin and push to origin.
-
-### Step 3: On Github
-* Disable Github Pages on your existing `<username>.github.io` repository
-* Rename that repository (or delete it if you're super confident)
-* Enable Github Pages on the repository created in Step 1 and choose the *master branch /docs folder* option.
-* Eat cake.
-
 ## The background
 [Github Pages](https://help.github.com/articles/configuring-a-publishing-source-for-github-pages/) content can come from one of 3 locations:
  * master branch of `<username>.github.io` repository
@@ -47,6 +26,25 @@ If you look carefully at the Github Pages documentation however, there's a limit
 > If your site is a User or Organization Page that has a repository named `<username>.github.io` or `<orgname>.github.io`, you cannot publish your site's source files from different locations.
 
 If you blinked and missed it, once you have a github.io repository you can't use the docs/ folder on any repos. So make sure you disable/rename that existing repo if you're using it.
+
+## Steps
+So if you're using Hexo and Github Pages but publishing on `<username>.github.io` repositories, here's how you convert.
+
+* On Github (step 1):
+  * Create a new repository to store both your Hexo instance and generated website (I suggest naming after your website)
+  * Note down the repo address for later.
+* In your Hexo folder (step 2):
+  * Remove existing conflicting plugins:
+    * `npm uninstall hexo-generator-cname hexo-deployer-git`
+    * Remove related plugin configuration in `_config.yml`
+  * Add the CNAME file (no extension, all uppercase) in the `source` folder. The contents of this file should be the domain of your website, e.g. `www.poweredbyjeff.com`.
+  * Set `public_dir: docs` in `_config.yml`.
+  * Add the Hexo folder to git, add Github repository created in Step 1 as origin and push to origin.
+* Back on Github (step 3):
+  * Disable Github Pages on your existing `<username>.github.io` repository
+  * Rename that repository (or delete it if you're super confident)
+  * Enable Github Pages on the repository created in Step 1 and choose the *master branch /docs folder* option.
+  * Eat cake.
 
 ## Advantages
 * Source is now stored in the same Github repository as the generated website
