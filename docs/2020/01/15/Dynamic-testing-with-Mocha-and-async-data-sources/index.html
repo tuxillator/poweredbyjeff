@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>Dynamic testing with Mocha and async data sources | Powered By Jeff</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="Mocha &amp;amp; Chai are fantastic libraries for BDD or TDD development, but don’t have a well documented method to do data driven testing. I define data driven testing here as dynamically generated tests">
+<meta name="keywords" content="programming,mocha,chai,testing">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dynamic testing with Mocha and async data sources">
+<meta property="og:url" content="https://www.poweredbyjeff.com/2020/01/15/Dynamic-testing-with-Mocha-and-async-data-sources/index.html">
+<meta property="og:site_name" content="Powered By Jeff">
+<meta property="og:description" content="Mocha &amp;amp; Chai are fantastic libraries for BDD or TDD development, but don’t have a well documented method to do data driven testing. I define data driven testing here as dynamically generated tests">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-03-08T07:00:09.504Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dynamic testing with Mocha and async data sources">
+<meta name="twitter:description" content="Mocha &amp;amp; Chai are fantastic libraries for BDD or TDD development, but don’t have a well documented method to do data driven testing. I define data driven testing here as dynamically generated tests">
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43838521-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div class="mobile-nav-panel">
+	<i class="icon-reorder icon-large"></i>
+</div>
+<header id="header">
+	<h1 class="blog-title">
+		<a href="/">Powered By Jeff</a>
+	</h1>
+	<nav class="nav">
+		<ul>
+			<li><a href="https://github.com/tuxillator">GitHub</a></li><li><a href="https://discord.gg/vet2u5J">Discord</a></li><li><a href="https://www.instagram.com/tuxillator/">Instagram</a></li><li><a href="http://www.linkedin.com/in/jjferrari">LinkedIn</a></li>
+		</ul>
+	</nav>
+</header>
+
+    <div id="main">
+      <article id="post-Dynamic-testing-with-Mocha-and-async-data-sources" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2020/01/15/Dynamic-testing-with-Mocha-and-async-data-sources/" class="article-date">
+  <time datetime="2020-01-15T04:37:06.000Z" itemprop="datePublished">2020-01-15</time>
+</a>
+		</span>
+		<span class="meta-elements author">Jeff Ferrari</span>
+		<div class="commentscount">
+			
+				<a href="https://www.poweredbyjeff.com/2020/01/15/Dynamic-testing-with-Mocha-and-async-data-sources/#disqus_thread" class="article-comment-link">Comments</a>
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 class="article-title entry-title" itemprop="name">
+      Dynamic testing with Mocha and async data sources
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<p>Mocha &amp; Chai are fantastic libraries for BDD or TDD development, but don’t have a well documented method to do <strong>data driven testing</strong>. I define data driven testing here as dynamically generated tests, duplicated with the <em>structure and content of the data itself</em> being the varying input.</p>
+<p>The tricky thing about using these libraries for this purpose is that the test suite generation itself expects all the tests to be defined in advance. As a result, looping over the data and using the regular describe(), each(), it(), etc does not go well.</p>
+<a id="more"></a>
+
+<p>To tackle this problem my general approach is:</p>
+<ol>
+<li>Expose the data to Javascript. You might choose to directly connect to the legacy data, or cache somewhere. I decided to cache in MongoDB for performance (testing &gt; 5 billion records in around 10 minutes) and to lower load on data source.</li>
+<li>Define tests for each unit of data (e.g. usually a database row or single “record” from your business logic).</li>
+<li>Loop over these tests and generate a new Mocha test for all your target data imperatively, rather than declaratively.</li>
+</ol>
+<p>For example: say you have a legacy database that is missing strict schema enforcement, or uses strings and unusual data structures to store business configuration. As gross as this is it’s more common than you’d expect, particularly in large, old organisations. As a result, before (or perhaps until) you move to a more modern database, you will need to verify the relationships and structure of the data aligns with what you would expect to avoid runtime issues. If you want to do so before runtime as a housekeeping task, enter <strong>data driven testing</strong>.</p>
+<p>This is roughly the structure I landed on:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="comment">// load data from cache</span></span><br><span class="line">  <span class="keyword">const</span> User = <span class="built_in">require</span>(<span class="string">"mongoose"</span>).model(<span class="string">"Transaction"</span>);</span><br><span class="line">  <span class="keyword">const</span> users = <span class="keyword">await</span> User.find();</span><br><span class="line"></span><br><span class="line">  users.forEach(<span class="function"><span class="params">user</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// create a suite per user record</span></span><br><span class="line">    describe(<span class="string">`user: <span class="subst">$&#123;user.dbid&#125;</span>`</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">        <span class="keyword">this</span>.addTest(</span><br><span class="line">          <span class="keyword">new</span> mocha.Test(<span class="string">"a dynamically added test"</span> + i, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">// define all the things you would expect the data structure to match</span></span><br><span class="line">            expect(user.name).to.equal(<span class="literal">true</span>);</span><br><span class="line">          &#125;)</span><br><span class="line">        );</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>You then get nice reporting on the exact record and nature of unexpected data, and correct accordingly in the data. I’d love to hear other exotic uses of testing suites!</p>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/chai/">chai</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mocha/">mocha</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/testing/">testing</a></li></ul>
+
+			</span>
+		</div>
+	</footer>
+	
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/05/14/Deploying-Hexo-website-to-Github-Pages/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          Deploy a Hexo blog to Github Pages
+        
+      </div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+    </div>
+    <footer id="footer">
+	<h1 class="footer-blog-title">
+		<a href="/">Powered By Jeff</a>
+	</h1>
+	<span class="copyright">
+		&copy; 2020 Jeff Ferrari<br>
+		The official website of Jeff Ferrari
+	</span>
+</footer>
+
+    
+<script>
+  var disqus_shortname = 'tuxillator';
+  
+  var disqus_url = 'https://www.poweredbyjeff.com/2020/01/15/Dynamic-testing-with-Mocha-and-async-data-sources/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

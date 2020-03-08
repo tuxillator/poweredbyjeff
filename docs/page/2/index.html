@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <title>Powered By Jeff</title>
@@ -34,7 +34,7 @@
 </script>
 
 </head>
-
+</html>
 <body>
   <div id="container">
     <div class="mobile-nav-panel">
@@ -53,6 +53,67 @@
 
     <div id="main">
       
+  
+    <article id="post-My-ideal-Minecraft-server-buildout-v3" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2014/03/22/My-ideal-Minecraft-server-buildout-v3/" class="article-date">
+  <time datetime="2014-03-22T10:00:00.000Z" itemprop="datePublished">2014-03-22</time>
+</a>
+		</span>
+		<span class="meta-elements author">Jeff Ferrari</span>
+		<div class="commentscount">
+			
+				<a href="https://www.poweredbyjeff.com/2014/03/22/My-ideal-Minecraft-server-buildout-v3/#disqus_thread" class="article-comment-link">Comments</a>
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 itemprop="name" class="entry-title">
+      <a class="article-title" href="/2014/03/22/My-ideal-Minecraft-server-buildout-v3/">My ideal Minecraft server buildout (v3)</a>
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+			<p>So after much consideration, I updated and tightened my private Minecraft server. TL;DR:</p>
+<ul>
+<li>Minecraft server hostname (copy/paste to join): minecraft.poweredbyjeff.com</li>
+<li>Teamspeak3: <a href="ts3server://ts3.poweredbyjeff.com" target="_blank" rel="noopener">ts3.poweredbyjeff.com</a></li>
+<li>Contact any Arbiter to get promoted to build access.</li>
+</ul>
+<p>My brief notes here only cover the software side of the setup; I’ll be doing something interesting once I build out my new home hypervisor (currently waiting on 1GB/s internet connection to get installed).</p>
+			
+				<p class="article-more-link">
+					<a href="/2014/03/22/My-ideal-Minecraft-server-buildout-v3/#more">Read More...</a>
+				</p>
+      
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/minecraft/">minecraft</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/serveradmin/">serveradmin</a></li></ul>
+
+			</span>
+		</div>
+	</footer>
+	
+</article>
+
+
+	<hr class="article-devider">
+
+
+
   
     <article id="post-FreeNAS-upgraded-to-9-1-unable-to-delete-old-jails" class="post">
 	<footer class="entry-meta-header">
@@ -81,7 +142,7 @@
 	<div class="entry-content">
 		
 			<p>I just ran the <a href="http://www.freenas.org/" target="_blank" rel="noopener">FreeNAS</a> upgrade from 8.3 to 9.1. FreeNAS 9.1 adds the capability to run multiple jails (awesome feature by the way, thanks). After upgrading there was the usual slew of minor UI changes. I had installed <a href="http://www.bacula.org/en/" target="_blank" rel="noopener">bacula</a> earlier but never got around to configuring it, and hence wanted to remove/start fresh.</p>
-<p>Unfortunately the jails did not migrate so cleanly on the UI. Additionally when I attempted to remove the installed bacula plugin it resulted in an error saying the jail does not exist.<br>
+<p>Unfortunately the jails did not migrate so cleanly on the UI. Additionally when I attempted to remove the installed bacula plugin it resulted in an error saying the jail does not exist.</p>
 			
 				<p class="article-more-link">
 					<a href="/2013/08/12/FreeNAS-upgraded-to-9-1-unable-to-delete-old-jails/#more">Read More...</a>
@@ -136,7 +197,7 @@
 	</header>
 	<div class="entry-content">
 		
-			<p>I was browsing through the referer logs in my website and noticed Drupal was serving content to my old hostname, <a href="http://oolportal.com" target="_blank" rel="noopener">http://oolportal.com</a> . SEO gurus also suggest it’s a <a href="http://searchenginewatch.com/article/2219759/Multiple-Domain-Choice-SEO-Considerations-of-Single-vs.-Multiple-Domains" target="_blank" rel="noopener">bad idea to serve the same content from multiple domains</a>, and that you can transfer link value using a redirect. Over the long run I want the references to all end up going to <a href="http://poweredbyjeff.com" target="_blank" rel="noopener">http://poweredbyjeff.com</a> so it’s time to take corrective action.<br>
+			<p>I was browsing through the referer logs in my website and noticed Drupal was serving content to my old hostname, <a href="http://oolportal.com" target="_blank" rel="noopener">http://oolportal.com</a> . SEO gurus also suggest it’s a <a href="http://searchenginewatch.com/article/2219759/Multiple-Domain-Choice-SEO-Considerations-of-Single-vs.-Multiple-Domains" target="_blank" rel="noopener">bad idea to serve the same content from multiple domains</a>, and that you can transfer link value using a redirect. Over the long run I want the references to all end up going to <a href="http://poweredbyjeff.com" target="_blank" rel="noopener">http://poweredbyjeff.com</a> so it’s time to take corrective action.</p>
 			
 				<p class="article-more-link">
 					<a href="/2013/08/10/Redirect-an-old-hostname-to-new-hostname-using-mod-rewrite-and-Drupal/#more">Read More...</a>
@@ -191,7 +252,7 @@
 	</header>
 	<div class="entry-content">
 		
-			<p>Erlang B is a commonly used algorithm used to estimate required capacity for a given load. Originating in telephony for estimating required trunks/channels for an expected load, this same algorithm can be applied to any problem where you have a known arrival rate and required Grade of Service - e.g. servers required for given web traffic, lanes required for given car traffic, staff required for given customers  in a retail shop, etc. I’m by no means an expert on the algorithm (it involves poisson distributions and clever things mathematicians get exited about). I do however use it so need it available in a format that doesn’t require a maths degree or regularly going to websites, hence Excel. Note also that this does not account for queuing (Erlang C for that) so may not be suitable where you expect and accept a queue, e.g. customers in your store can wait a few minutes and would not typically mind.<br>
+			<p>Erlang B is a commonly used algorithm used to estimate required capacity for a given load. Originating in telephony for estimating required trunks/channels for an expected load, this same algorithm can be applied to any problem where you have a known arrival rate and required Grade of Service - e.g. servers required for given web traffic, lanes required for given car traffic, staff required for given customers  in a retail shop, etc. I’m by no means an expert on the algorithm (it involves poisson distributions and clever things mathematicians get exited about). I do however use it so need it available in a format that doesn’t require a maths degree or regularly going to websites, hence Excel. Note also that this does not account for queuing (Erlang C for that) so may not be suitable where you expect and accept a queue, e.g. customers in your store can wait a few minutes and would not typically mind.</p>
 			
 				<p class="article-more-link">
 					<a href="/2013/08/10/Erlang-B-Visual-Basic-implementation-for-use-in-Excel/#more">Read More...</a>
@@ -248,7 +309,7 @@
 		
 			<p>Yeah, I’m a geek - I’m running my own Minecraft server. In case it isn’t obvious you can see a realtime map of the world as we escape reality in the link in the menu up top. It’s now open for “public” but I would still class as beta as I’m tinkering quite a bit.</p>
 <p>Anyways, feel free to drop in.</p>
-<p>Minecraft server address: minecraft.poweredbyjeff.com<br>
+<p>Minecraft server address: minecraft.poweredbyjeff.com</p>
 			
 				<p class="article-more-link">
 					<a href="/2013/08/10/Jeff-s-Minecraft-server/#more">Read More...</a>
@@ -303,7 +364,7 @@
 	</header>
 	<div class="entry-content">
 		
-			<p>I had a need recently to sniff traffic going to an iPhone at home. Nothing nefarious; just trying to figure out why iCloud backup was not working. Anyhow, a decent (and secure) wifi router would typically only send data to the destination hardware address, meaning I could not see the iPhone’s traffic using tcpdump or Wireshark. In effect what I wanted to do is set up a SPAN port in the Tomoto wifi world. Here’s how I did it…<br>
+			<p>I had a need recently to sniff traffic going to an iPhone at home. Nothing nefarious; just trying to figure out why iCloud backup was not working. Anyhow, a decent (and secure) wifi router would typically only send data to the destination hardware address, meaning I could not see the iPhone’s traffic using tcpdump or Wireshark. In effect what I wanted to do is set up a SPAN port in the Tomoto wifi world. Here’s how I did it…</p>
 			
 				<p class="article-more-link">
 					<a href="/2013/07/08/Sniff-iPhone-traffic-using-Tomato-router-firmware/#more">Read More...</a>
@@ -364,9 +425,10 @@
 <li>Download and transfer installts3.sh to your server.</li>
 <li>Download and transfer the correct server binary to your server.</li>
 <li>Run <code>installts3.sh</code>:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod u+x installts3.sh</span><br><span class="line">sudo ./installts3.sh serverbinary.tar.gz</span><br></pre></td></tr></table></figure>
+
 </li>
 </ol>
-<p>Replace serverbinary.tar.gz with the name of the file you downloaded from the Teamspeak website. If there are no errors the script will tell you where to get your ServerAdmin privilege key and you are good to go!<br>
+<p>Replace serverbinary.tar.gz with the name of the file you downloaded from the Teamspeak website. If there are no errors the script will tell you where to get your ServerAdmin privilege key and you are good to go!</p>
 			
 				<p class="article-more-link">
 					<a href="/2013/06/17/Install-script-for-Teamspeak-3-server-on-Debian-or-Ubuntu/#more">Read More...</a>
@@ -478,8 +540,10 @@
 	<div class="entry-content">
 		
 			<p><em><em>January 2015 update:</em> these days I generally use the powerful <a href="http://www.sourcetreeapp.com" target="_blank" rel="noopener">SourceTree tool from Atlassian</a>. While it’s great to be a purist, sometimes I just need to get the “job done”. The below still applies when I’m working exclusively in a shell (generally on a remote box).</em></p>
-<p>These are some post-installation commands I use to get Git quickly into a working, friendly to use state - cherry-picked from <a href="http://git-scm.com/book/en/Customizing-Git-Git-Configuration" target="_blank" rel="noopener">http://git-scm.com/book/en/Customizing-Git-Git-Configuration</a>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># Required. Tell git who you are... appears in commit logs.</span><br><span class="line">git config --global user.email &quot;youremail@example.com&quot;</span><br><span class="line">git config --global user.name &quot;Your Name&quot;</span><br><span class="line"></span><br><span class="line"># Optional! Some preferences to ease the eye and editing</span><br><span class="line">git config --global core.editor nano</span><br><span class="line">git config --global color.ui true</span><br></pre></td></tr></table></figure></p>
-<p>This list may grow/update over time, but this I find gets me out of the gate and over the minor annoyances quickly when using git on a fresh machine.<br>
+<p>These are some post-installation commands I use to get Git quickly into a working, friendly to use state - cherry-picked from <a href="http://git-scm.com/book/en/Customizing-Git-Git-Configuration" target="_blank" rel="noopener">http://git-scm.com/book/en/Customizing-Git-Git-Configuration</a>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># Required. Tell git who you are... appears in commit logs.</span><br><span class="line">git config --global user.email &quot;youremail@example.com&quot;</span><br><span class="line">git config --global user.name &quot;Your Name&quot;</span><br><span class="line"></span><br><span class="line"># Optional! Some preferences to ease the eye and editing</span><br><span class="line">git config --global core.editor nano</span><br><span class="line">git config --global color.ui true</span><br></pre></td></tr></table></figure>
+
+<p>This list may grow/update over time, but this I find gets me out of the gate and over the minor annoyances quickly when using git on a fresh machine.</p>
 			
 				<p class="article-more-link">
 					<a href="/2013/06/08/Git-cheat-sheet-computer-setup/#more">Read More...</a>
@@ -561,61 +625,6 @@
 
 
   
-    <article id="post-Fighting-spam-in-Drupal-7-disable-the-homepage-field-on-comments" class="post">
-	<footer class="entry-meta-header">
-		<span class="meta-elements date">
-			<a href="/2013/06/02/Fighting-spam-in-Drupal-7-disable-the-homepage-field-on-comments/" class="article-date">
-  <time datetime="2013-06-02T10:58:00.000Z" itemprop="datePublished">2013-06-02</time>
-</a>
-		</span>
-		<span class="meta-elements author">Jeff Ferrari</span>
-		<div class="commentscount">
-			
-				<a href="https://www.poweredbyjeff.com/2013/06/02/Fighting-spam-in-Drupal-7-disable-the-homepage-field-on-comments/#disqus_thread" class="article-comment-link">Comments</a>
-			
-		</div>
-	</footer>
-	
-	<header class="entry-header">
-		
-  
-    <h1 itemprop="name" class="entry-title">
-      <a class="article-title" href="/2013/06/02/Fighting-spam-in-Drupal-7-disable-the-homepage-field-on-comments/">Fighting spam in Drupal 7 - disable the homepage field on comments</a>
-    </h1>
-  
-
-	</header>
-	<div class="entry-content">
-		
-			<p>Spam is really annoying, particularly for anybody maintaining a website with anonymous contribution - in my case via comments. Mollum filters the bulk of the spammers out. Unfortunately if you want to capture anonymous commenter’s contact information in Drupal 7 this also exposes and displays the homepage field. This is also displayed to all visitors to your website that can access this content - incentive for link spammers :(<br>
-			
-				<p class="article-more-link">
-					<a href="/2013/06/02/Fighting-spam-in-Drupal-7-disable-the-homepage-field-on-comments/#more">Read More...</a>
-				</p>
-      
-    
-	</div>
-	<footer class="entry-footer">
-		<div class="entry-meta-footer">
-			<span class="category">
-				
-			</span>
-			<span class="tags">
-				
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/drupal/">drupal</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">programming</a></li></ul>
-
-			</span>
-		</div>
-	</footer>
-	
-</article>
-
-
-	<hr class="article-devider">
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -628,7 +637,7 @@
 		<a href="/">Powered By Jeff</a>
 	</h1>
 	<span class="copyright">
-		&copy; 2018 Jeff Ferrari<br>
+		&copy; 2020 Jeff Ferrari<br>
 		The official website of Jeff Ferrari
 	</span>
 </footer>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <title>Fighting spam in Drupal 7 - disable the homepage field on comments | Powered By Jeff</title>
@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Powered By Jeff">
 <meta property="og:description" content="Spam is really annoying, particularly for anybody maintaining a website with anonymous contribution - in my case via comments. Mollum filters the bulk of the spammers out. Unfortunately if you want to">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-11-01T08:05:15.442Z">
+<meta property="og:updated_time" content="2020-03-07T04:11:49.987Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Fighting spam in Drupal 7 - disable the homepage field on comments">
 <meta name="twitter:description" content="Spam is really annoying, particularly for anybody maintaining a website with anonymous contribution - in my case via comments. Mollum filters the bulk of the spammers out. Unfortunately if you want to">
@@ -36,7 +36,7 @@
 </script>
 
 </head>
-
+</html>
 <body>
   <div id="container">
     <div class="mobile-nav-panel">
@@ -80,10 +80,13 @@
 	</header>
 	<div class="entry-content">
 		
-    	<p>Spam is really annoying, particularly for anybody maintaining a website with anonymous contribution - in my case via comments. Mollum filters the bulk of the spammers out. Unfortunately if you want to capture anonymous commenter’s contact information in Drupal 7 this also exposes and displays the homepage field. This is also displayed to all visitors to your website that can access this content - incentive for link spammers :(<br><a id="more"></a><br>If you don’t care about following up with your commenters, or you only allow commenting by registered users - the email and homepage field on anonymous comments can be disabled here:</p>
+    	<p>Spam is really annoying, particularly for anybody maintaining a website with anonymous contribution - in my case via comments. Mollum filters the bulk of the spammers out. Unfortunately if you want to capture anonymous commenter’s contact information in Drupal 7 this also exposes and displays the homepage field. This is also displayed to all visitors to your website that can access this content - incentive for link spammers :(</p>
+<a id="more"></a>
+<p>If you don’t care about following up with your commenters, or you only allow commenting by registered users - the email and homepage field on anonymous comments can be disabled here:</p>
 <p>Administration -&gt; Structure -&gt; Content Types -&gt; [choose relevant content type] -&gt; Comment settings -&gt; Anonymous commenting</p>
 <p>This however doesn’t work for me - I like to be able to reach out to legitmate commenters via email and require it (but don’t display it). I don’t care for the homepage field. The easiest and quickest way to disable the field is to add the functionality yourself via a module. Adding this in a simple module  should do the trick (I stuck it in my “jeff_hacks” module, you need to update the prefix to your module name):</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function jeff_hacks_form_alter(&amp;$form)&#123;</span><br><span class="line">    $form[&apos;author&apos;][&apos;homepage&apos;][&apos;#access&apos;] = FALSE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
     
 	</div>
@@ -142,7 +145,7 @@
 		<a href="/">Powered By Jeff</a>
 	</h1>
 	<span class="copyright">
-		&copy; 2018 Jeff Ferrari<br>
+		&copy; 2020 Jeff Ferrari<br>
 		The official website of Jeff Ferrari
 	</span>
 </footer>

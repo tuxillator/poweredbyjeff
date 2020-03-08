@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <title>Macports-installed MongoDB won&#39;t start under fresh install (OS X 10.10 Yosemite) | Powered By Jeff</title>
@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Powered By Jeff">
 <meta property="og:description" content="I had problems getting MongoDB to start using launchd (my preferred method for portability) after a fresh Yosemite install. After initially suspecting the _mongo user was not being correctly created b">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-11-01T08:05:15.449Z">
+<meta property="og:updated_time" content="2020-03-07T04:11:49.990Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Macports-installed MongoDB won&#39;t start under fresh install (OS X 10.10 Yosemite)">
 <meta name="twitter:description" content="I had problems getting MongoDB to start using launchd (my preferred method for portability) after a fresh Yosemite install. After initially suspecting the _mongo user was not being correctly created b">
@@ -36,7 +36,7 @@
 </script>
 
 </head>
-
+</html>
 <body>
   <div id="container">
     <div class="mobile-nav-panel">
@@ -80,17 +80,29 @@
 	</header>
 	<div class="entry-content">
 		
-    	<p>I had problems getting MongoDB to start using launchd (my preferred method for portability) after a fresh Yosemite install. After initially suspecting the <code>_mongo</code> user was not being correctly created by the Macports installation script, it turned out to be a simple permissions issue. <a id="more"></a> After doing:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo port load mongodb</span><br></pre></td></tr></table></figure></p>
-<p>all looked well, no errors. In the console log however I was getting this:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">... com.apple.xpc.launchd[1]: (org.macports.mongodb) Service only ran for 0 seconds. Pushing respawn out by 10 seconds.</span><br></pre></td></tr></table></figure></p>
-<p>And <code>ps aux | grep mongo</code> was not showing any running processes. Eventually OS X did not like my daemon:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">... com.apple.xpc.launchd[1]: (org.macports.mongodb) This service is defined to be constantly running and is inherently inefficient.</span><br></pre></td></tr></table></figure></p>
-<p>So, after ensuring xCode was installed I checked how this service was starting:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open /opt/local/etc/LaunchDaemons/org.macports.mongodb/org.macports.mongodb.plist</span><br></pre></td></tr></table></figure></p>
+    	<p>I had problems getting MongoDB to start using launchd (my preferred method for portability) after a fresh Yosemite install. After initially suspecting the <code>_mongo</code> user was not being correctly created by the Macports installation script, it turned out to be a simple permissions issue. <a id="more"></a> After doing:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo port load mongodb</span><br></pre></td></tr></table></figure>
+
+<p>all looked well, no errors. In the console log however I was getting this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">... com.apple.xpc.launchd[1]: (org.macports.mongodb) Service only ran for 0 seconds. Pushing respawn out by 10 seconds.</span><br></pre></td></tr></table></figure>
+
+<p>And <code>ps aux | grep mongo</code> was not showing any running processes. Eventually OS X did not like my daemon:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">... com.apple.xpc.launchd[1]: (org.macports.mongodb) This service is defined to be constantly running and is inherently inefficient.</span><br></pre></td></tr></table></figure>
+
+<p>So, after ensuring xCode was installed I checked how this service was starting:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open /opt/local/etc/LaunchDaemons/org.macports.mongodb/org.macports.mongodb.plist</span><br></pre></td></tr></table></figure>
+
 <p>This revealed the user account, and a variety of dependent files/folders that launchd was looking for to start this service. Of note:</p>
 <p><code>_mongo</code> - the user the server process will run under</p>
 <p>/opt/local/bin/mongod - the folder where the server binary is located</p>
 <p>/opt/local/var/db/mongodb - the default –dbpath option to mongod, where the data is stored</p>
 <p>/opt/local/var/log/mongodb/mongodb.log  - the default –logpath option to mongod, where the log file is stored</p>
-<p>First and most obvious, I checked if the system account existed:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dscl . -ls /Users | grep mongo</span><br></pre></td></tr></table></figure></p>
-<p>Looked fine, I saw <code>_mongo</code> as expected per the daemon plist. Turns out in my case something (another Macports package most likely) had changed the permissions for one of the parent folders of the log file. This resolved for me:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod 755 /opt/local/var/log</span><br></pre></td></tr></table></figure></p>
+<p>First and most obvious, I checked if the system account existed:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dscl . -ls /Users | grep mongo</span><br></pre></td></tr></table></figure>
+
+<p>Looked fine, I saw <code>_mongo</code> as expected per the daemon plist. Turns out in my case something (another Macports package most likely) had changed the permissions for one of the parent folders of the log file. This resolved for me:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod 755 /opt/local/var/log</span><br></pre></td></tr></table></figure>
+
 <p>It was (incorrectly) set to 744, while readable could not be descended into. A subsequent unload/reload of the port allowed me to connect to the mongo CLI successfully. Unfortunately through this issue there was very little error logging, and what I had was ambiguous… if you find yourself in a similar situation check each of these places (and the parent folders back to root).</p>
 
     
@@ -150,7 +162,7 @@
 		<a href="/">Powered By Jeff</a>
 	</h1>
 	<span class="copyright">
-		&copy; 2018 Jeff Ferrari<br>
+		&copy; 2020 Jeff Ferrari<br>
 		The official website of Jeff Ferrari
 	</span>
 </footer>

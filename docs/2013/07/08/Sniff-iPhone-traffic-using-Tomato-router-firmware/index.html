@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <title>Sniff iPhone traffic using Tomato router firmware | Powered By Jeff</title>
@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Powered By Jeff">
 <meta property="og:description" content="I had a need recently to sniff traffic going to an iPhone at home. Nothing nefarious; just trying to figure out why iCloud backup was not working. Anyhow, a decent (and secure) wifi router would typic">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-11-01T08:05:15.444Z">
+<meta property="og:updated_time" content="2020-03-07T04:11:49.989Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sniff iPhone traffic using Tomato router firmware">
 <meta name="twitter:description" content="I had a need recently to sniff traffic going to an iPhone at home. Nothing nefarious; just trying to figure out why iCloud backup was not working. Anyhow, a decent (and secure) wifi router would typic">
@@ -36,7 +36,7 @@
 </script>
 
 </head>
-
+</html>
 <body>
   <div id="container">
     <div class="mobile-nav-panel">
@@ -80,18 +80,30 @@
 	</header>
 	<div class="entry-content">
 		
-    	<p>I had a need recently to sniff traffic going to an iPhone at home. Nothing nefarious; just trying to figure out why iCloud backup was not working. Anyhow, a decent (and secure) wifi router would typically only send data to the destination hardware address, meaning I could not see the iPhone’s traffic using tcpdump or Wireshark. In effect what I wanted to do is set up a SPAN port in the Tomoto wifi world. Here’s how I did it…<br><a id="more"></a></p>
-<p><strong>Enable the ipt_ROUTE module</strong>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/sbin/modprobe ipt_ROUTE</span><br></pre></td></tr></table></figure></p>
-<p>If this doesn’t work upgrade your firmware to something more recent.<br><strong>Forward the traffic</strong>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">iptables -A PREROUTING -t mangle -d iptomirror -j ROUTE --gw iptosendto --tee</span><br><span class="line">iptables -A PREROUTING -t mangle -s iptomirror -j ROUTE --gw iptosendto --tee</span><br><span class="line">iptables -A POSTROUTING -t mangle -d iptomirror -j ROUTE --gw iptosendto --tee</span><br><span class="line">iptables -A POSTROUTING -t mangle -s iptomirror -j ROUTE --gw iptosendto --tee</span><br></pre></td></tr></table></figure></p>
+    	<p>I had a need recently to sniff traffic going to an iPhone at home. Nothing nefarious; just trying to figure out why iCloud backup was not working. Anyhow, a decent (and secure) wifi router would typically only send data to the destination hardware address, meaning I could not see the iPhone’s traffic using tcpdump or Wireshark. In effect what I wanted to do is set up a SPAN port in the Tomoto wifi world. Here’s how I did it…</p>
+<a id="more"></a>
+
+<p><strong>Enable the ipt_ROUTE module</strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/sbin/modprobe ipt_ROUTE</span><br></pre></td></tr></table></figure>
+
+<p>If this doesn’t work upgrade your firmware to something more recent.<br><strong>Forward the traffic</strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">iptables -A PREROUTING -t mangle -d iptomirror -j ROUTE --gw iptosendto --tee</span><br><span class="line">iptables -A PREROUTING -t mangle -s iptomirror -j ROUTE --gw iptosendto --tee</span><br><span class="line">iptables -A POSTROUTING -t mangle -d iptomirror -j ROUTE --gw iptosendto --tee</span><br><span class="line">iptables -A POSTROUTING -t mangle -s iptomirror -j ROUTE --gw iptosendto --tee</span><br></pre></td></tr></table></figure>
+
 <p>Replace <code>iptomirror</code> with the IP of the iPhone/wifi device you wish to listen to. Replace <code>iptosendto</code> with the IP of the computer running tcpdump/Wireshark. The above 4 commands leverage the <code>--tee</code> option provided by the ipt_ROUTE kernel module and will:</p>
 <ol>
 <li>Find any packet with source/destination IP of iptomirror, then</li>
 <li>Duplicate both of these classes of packets packet and send a copy to iptosendto</li>
 </ol>
-<p>These commands should do the trick to sniff traffic not just for iPhones, but for any device on connected to a Tomato router (and possibly DD-WRT, but I haven’t tried). If you’re having problems double check the ipt_ROUTE module is loaded:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsmod | grep ipt</span><br></pre></td></tr></table></figure></p>
-<p>And check your rules made it into the mangle tables:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -L -t mangle</span><br></pre></td></tr></table></figure></p>
+<p>These commands should do the trick to sniff traffic not just for iPhones, but for any device on connected to a Tomato router (and possibly DD-WRT, but I haven’t tried). If you’re having problems double check the ipt_ROUTE module is loaded:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsmod | grep ipt</span><br></pre></td></tr></table></figure>
+
+<p>And check your rules made it into the mangle tables:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -L -t mangle</span><br></pre></td></tr></table></figure>
+
 <p>You should see your entries in the PREROUTING and POSTROUTING chains.</p>
-<p>To stop the mirroring, either reboot the router or  remove the entries from the chains using the same commands as creating, but replace -A (add) with -D (delete):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">iptables -D PREROUTING -t mangle -d iptomirror -j ROUTE --gw iptosendto --tee</span><br><span class="line">iptables -D PREROUTING -t mangle -s iptomirror -j ROUTE --gw iptosendto --tee</span><br><span class="line">iptables -D POSTROUTING -t mangle -d iptomirror -j ROUTE --gw iptosendto --tee</span><br><span class="line">iptables -D POSTROUTING -t mangle -s iptomirror -j ROUTE --gw iptosendto --tee</span><br></pre></td></tr></table></figure></p>
+<p>To stop the mirroring, either reboot the router or  remove the entries from the chains using the same commands as creating, but replace -A (add) with -D (delete):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">iptables -D PREROUTING -t mangle -d iptomirror -j ROUTE --gw iptosendto --tee</span><br><span class="line">iptables -D PREROUTING -t mangle -s iptomirror -j ROUTE --gw iptosendto --tee</span><br><span class="line">iptables -D POSTROUTING -t mangle -d iptomirror -j ROUTE --gw iptosendto --tee</span><br><span class="line">iptables -D POSTROUTING -t mangle -s iptomirror -j ROUTE --gw iptosendto --tee</span><br></pre></td></tr></table></figure>
+
 <p>Feel free to comment below if you’re having problems, otherwise happy spying… ahem… troubleshooting!</p>
 
     
@@ -151,7 +163,7 @@
 		<a href="/">Powered By Jeff</a>
 	</h1>
 	<span class="copyright">
-		&copy; 2018 Jeff Ferrari<br>
+		&copy; 2020 Jeff Ferrari<br>
 		The official website of Jeff Ferrari
 	</span>
 </footer>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <title>Mount SSH on a Mac using Macports (aka the easy way) | Powered By Jeff</title>
@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Powered By Jeff">
 <meta property="og:description" content="Often I would like to access files over SFTP but without the limitations of an FTP client. For example, it’s handy to alter remote files directly in terminal as if they are local, or open them with my">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-11-01T08:05:15.443Z">
+<meta property="og:updated_time" content="2020-03-07T04:11:49.989Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mount SSH on a Mac using Macports (aka the easy way)">
 <meta name="twitter:description" content="Often I would like to access files over SFTP but without the limitations of an FTP client. For example, it’s handy to alter remote files directly in terminal as if they are local, or open them with my">
@@ -36,7 +36,7 @@
 </script>
 
 </head>
-
+</html>
 <body>
   <div id="container">
     <div class="mobile-nav-panel">
@@ -83,13 +83,17 @@
     	<p>Often I would like to access files over SFTP but without the limitations of an FTP client. For example, it’s handy to alter remote files directly in terminal as if they are local, or open them with my nice, fully fledged editor. Mucking around downloading/uploading files each time I modify them gets annoying quickly, especially with something fiddly like web development.</p>
 <p>Fortunately SSHFS is now in <a href="http://www.macports.org" target="_blank" rel="noopener">MacPorts</a>, and provides a quick solution for those on a Mac with SSH access. I could of course configure a file server but that is not always possible, particularly if you don’t have the ablity to install software on the remote machine!</p>
 <a id="more"></a>
+
 <p>There are various ways I have seen to install SSHFS but this has been simplified with the port now available. To get this going quickly:</p>
 <ol>
 <li>Install <a href="http://www.macports.org" target="_blank" rel="noopener">MacPorts</a>.</li>
 <li>Run the following to install SSHFS (Fuse will also automagically install):<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo port install sshfs</span><br></pre></td></tr></table></figure>
+
 </li>
 </ol>
-<p>The <code>sshfs</code> command is very simple and follows syntax similar to scp. <strong>To mount an SFTP directory</strong> customize the following and run in terminal (<a href="http://fuse.sourceforge.net/sshfs.html" target="_blank" rel="noopener">sudo is not needed and not recommended</a>):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir [local_directory]</span><br><span class="line">sshfs [username]@[hostname]:/[remote_directory] /[local_directory] -ocache=no</span><br></pre></td></tr></table></figure></p>
+<p>The <code>sshfs</code> command is very simple and follows syntax similar to scp. <strong>To mount an SFTP directory</strong> customize the following and run in terminal (<a href="http://fuse.sourceforge.net/sshfs.html" target="_blank" rel="noopener">sudo is not needed and not recommended</a>):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir [local_directory]</span><br><span class="line">sshfs [username]@[hostname]:/[remote_directory] /[local_directory] -ocache=no</span><br></pre></td></tr></table></figure>
+
 <p>Breaking down the command:</p>
 <ul>
 <li>[username] is the username on the remote machine. If this matches your local machine, you do not need it.</li>
@@ -98,7 +102,9 @@
 <li>[local_directory] is a directory created on your local machine. I like using /tmp/sshfs.</li>
 <li>-ocache=no disables caching and is optional, but I highly recommend it if you are doing anything that involves a high number of * file changes (like the LAMP example above).</li>
 </ul>
-<p>After running the command you will be challenged with the usual password for the remote account (or not if you have setup SSH keys). <strong>To unmount, the standard <code>umount</code> does the trick</strong>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">umount [local_directory]</span><br></pre></td></tr></table></figure></p>
+<p>After running the command you will be challenged with the usual password for the remote account (or not if you have setup SSH keys). <strong>To unmount, the standard <code>umount</code> does the trick</strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">umount [local_directory]</span><br></pre></td></tr></table></figure>
+
 <p>If you’re having problems, test connecting with SSH first to make sure the remote_server, username and password are all correct.</p>
 
     
@@ -158,7 +164,7 @@
 		<a href="/">Powered By Jeff</a>
 	</h1>
 	<span class="copyright">
-		&copy; 2018 Jeff Ferrari<br>
+		&copy; 2020 Jeff Ferrari<br>
 		The official website of Jeff Ferrari
 	</span>
 </footer>

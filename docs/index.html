@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <title>Powered By Jeff</title>
@@ -34,7 +34,7 @@
 </script>
 
 </head>
-
+</html>
 <body>
   <div id="container">
     <div class="mobile-nav-panel">
@@ -53,6 +53,62 @@
 
     <div id="main">
       
+  
+    <article id="post-Dynamic-testing-with-Mocha-and-async-data-sources" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2020/01/15/Dynamic-testing-with-Mocha-and-async-data-sources/" class="article-date">
+  <time datetime="2020-01-15T04:37:06.000Z" itemprop="datePublished">2020-01-15</time>
+</a>
+		</span>
+		<span class="meta-elements author">Jeff Ferrari</span>
+		<div class="commentscount">
+			
+				<a href="https://www.poweredbyjeff.com/2020/01/15/Dynamic-testing-with-Mocha-and-async-data-sources/#disqus_thread" class="article-comment-link">Comments</a>
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 itemprop="name" class="entry-title">
+      <a class="article-title" href="/2020/01/15/Dynamic-testing-with-Mocha-and-async-data-sources/">Dynamic testing with Mocha and async data sources</a>
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+			<p>Mocha &amp; Chai are fantastic libraries for BDD or TDD development, but don’t have a well documented method to do <strong>data driven testing</strong>. I define data driven testing here as dynamically generated tests, duplicated with the <em>structure and content of the data itself</em> being the varying input.</p>
+<p>The tricky thing about using these libraries for this purpose is that the test suite generation itself expects all the tests to be defined in advance. As a result, looping over the data and using the regular describe(), each(), it(), etc does not go well.</p>
+			
+				<p class="article-more-link">
+					<a href="/2020/01/15/Dynamic-testing-with-Mocha-and-async-data-sources/#more">Read More...</a>
+				</p>
+      
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/chai/">chai</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mocha/">mocha</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/testing/">testing</a></li></ul>
+
+			</span>
+		</div>
+	</footer>
+	
+</article>
+
+
+	<hr class="article-devider">
+
+
+
   
     <article id="post-Deploying-Hexo-website-to-Github-Pages" class="post">
 	<footer class="entry-meta-header">
@@ -81,7 +137,7 @@
 	<div class="entry-content">
 		
 			<p><a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> is a powerful static website generator that can be combined with <a href="https://pages.github.com" target="_blank" rel="noopener">Github Pages</a> to run a personal blog. This pairing is a convenient, performant and free blogging platform that is very flexible and relatively simple.</p>
-<p>Most instructions make running this combination more complicated than it needs to be. If you’re already using Github to publish your Hexo blog, read on to learn how to update your workflow and eliminate some plugins.<br>
+<p>Most instructions make running this combination more complicated than it needs to be. If you’re already using Github to publish your Hexo blog, read on to learn how to update your workflow and eliminate some plugins.</p>
 			
 				<p class="article-more-link">
 					<a href="/2018/05/14/Deploying-Hexo-website-to-Github-Pages/#more">Read More...</a>
@@ -190,7 +246,7 @@
 	<div class="entry-content">
 		
 			<p>The <a href="http://www.intel.com/content/www/us/en/solid-state-drives/solid-state-drives-750-series.html" target="_blank" rel="noopener">Intel 750 series flash storage</a> is a beast, without doubt one of the top tier consumer storage platforms on the market today. This can deliver up to 2500 MB/s reads… for comparison the best SSDs on the market today are limited to ~550 MB/s due to the SATA interface.</p>
-<h2 id="Installing"><a href="#Installing" class="headerlink" title="Installing"></a>Installing</h2><p>To use this storage in Debian Jessie, a little black magic is involved particularly if you want to use it as a boot drive.<br>
+<h2 id="Installing"><a href="#Installing" class="headerlink" title="Installing"></a>Installing</h2><p>To use this storage in Debian Jessie, a little black magic is involved particularly if you want to use it as a boot drive.</p>
 			
 				<p class="article-more-link">
 					<a href="/2015/10/29/Intel-750-SSD-in-Debian-Jessie/#more">Read More...</a>
@@ -246,7 +302,7 @@
 	<div class="entry-content">
 		
 			<p>I’m a big fan of <a href="http://www.abyssoft.com/software/teleport/" target="_blank" rel="noopener">Teleport</a> on Mac OS X. If you’ve never used it before, you probably haven’t had to work with more than 1 Mac at a time. I’m not talking about remote access (SSH is my tool of choice for remote access). This is for an extended desktop experience with physically distinct machines. My mouse is connected to the Windows machine in the middle, Mac OS X on the laptop to the left and the Ubuntu guest VM console on the right all feel like one “extended desktop”.</p>
-<p>The problem with the tool is it’s platform specific… no workie with Windows or Linux. After some google-fu the currently accepted alternative is <a href="http://synergy-project.org/" target="_blank" rel="noopener">Synergy</a>. It’s basically a cross-platform tool that does the same thing - allow a computer to share keyboard and mouse to hosts on the LAN. It’s very nice, but here’s some gotchas along with solutions I found along the way…<br>
+<p>The problem with the tool is it’s platform specific… no workie with Windows or Linux. After some google-fu the currently accepted alternative is <a href="http://synergy-project.org/" target="_blank" rel="noopener">Synergy</a>. It’s basically a cross-platform tool that does the same thing - allow a computer to share keyboard and mouse to hosts on the LAN. It’s very nice, but here’s some gotchas along with solutions I found along the way…</p>
 			
 				<p class="article-more-link">
 					<a href="/2015/02/01/Mouse-keyboard-and-brain-synergy-with-Synergy/#more">Read More...</a>
@@ -356,7 +412,7 @@
 	<div class="entry-content">
 		
 			<p>Merry Christmas! And obviously a new website… hope you all like it! Ironically it’s taken 12 years but I’ve gone full circle back to a static website (albeit using the powerful Hexo generator). Inspired by Node.js and it’s ilk, along with lots of toying with MEAN stacks and Git at both work and play, this is now a change tracked Github CDN hosted website.</p>
-<p>Either way - season’s greetings :)<br>
+<p>Either way - season’s greetings :)</p>
 			
 				<p class="article-more-link">
 					<a href="/2014/12/26/Merry-Christmas-new-website/#more">Read More...</a>
@@ -413,7 +469,7 @@
 		
 			<p>Earlier in the year I completed my PADI Rescue course. For those that enjoy diving more than once a year and are on the PADI bandwagon, I highly recommend completing this course. It makes you a safer and humbler diver, which if nothing else is what I see to be the most critical attributes to this sport.</p>
 <p>Without further ado, here it is! If you’re interested, the original PDFs are downloadable and printable when going to Tioman. Of course the usual disclaimer - please take out insurance, and I don’t guarantee the accuracy/updatedness of this document. Be a real diver, do your own preparation and dive safe. Peace!</p>
-<p><a href="EAP.pdf">Emergency Action Plan (pdf)</a><br><a href="EAPflowchart.pdf">Flowchart (pdf)</a><br>
+<p><a href="EAP.pdf">Emergency Action Plan (pdf)</a><br><a href="EAPflowchart.pdf">Flowchart (pdf)</a></p>
 			
 				<p class="article-more-link">
 					<a href="/2014/12/08/PADI-Rescue-Emergency-Action-Plan-EAP-for-Tioman-Malaysia/#more">Read More...</a>
@@ -524,71 +580,10 @@
 	<div class="entry-content">
 		
 			<p><strong>Updated 2014/12/8:</strong></p>
-<p>I had enough feedback (and nostalgia) to bring the server back up!! Both Teamspeak and Minecraft servers have changed to ts3.poweredbyjeff.com and minecraft.poweredbyjeff.com respectively. please check you have the right address when joining each.<br>
+<p>I had enough feedback (and nostalgia) to bring the server back up!! Both Teamspeak and Minecraft servers have changed to ts3.poweredbyjeff.com and minecraft.poweredbyjeff.com respectively. please check you have the right address when joining each.</p>
 			
 				<p class="article-more-link">
 					<a href="/2014/04/22/The-future-of-minecraft-poweredbyjeff-com/#more">Read More...</a>
-				</p>
-      
-    
-	</div>
-	<footer class="entry-footer">
-		<div class="entry-meta-footer">
-			<span class="category">
-				
-			</span>
-			<span class="tags">
-				
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/minecraft/">minecraft</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/serveradmin/">serveradmin</a></li></ul>
-
-			</span>
-		</div>
-	</footer>
-	
-</article>
-
-
-	<hr class="article-devider">
-
-
-
-  
-    <article id="post-My-ideal-Minecraft-server-buildout-v3" class="post">
-	<footer class="entry-meta-header">
-		<span class="meta-elements date">
-			<a href="/2014/03/22/My-ideal-Minecraft-server-buildout-v3/" class="article-date">
-  <time datetime="2014-03-22T10:00:00.000Z" itemprop="datePublished">2014-03-22</time>
-</a>
-		</span>
-		<span class="meta-elements author">Jeff Ferrari</span>
-		<div class="commentscount">
-			
-				<a href="https://www.poweredbyjeff.com/2014/03/22/My-ideal-Minecraft-server-buildout-v3/#disqus_thread" class="article-comment-link">Comments</a>
-			
-		</div>
-	</footer>
-	
-	<header class="entry-header">
-		
-  
-    <h1 itemprop="name" class="entry-title">
-      <a class="article-title" href="/2014/03/22/My-ideal-Minecraft-server-buildout-v3/">My ideal Minecraft server buildout (v3)</a>
-    </h1>
-  
-
-	</header>
-	<div class="entry-content">
-		
-			<p>So after much consideration, I updated and tightened my private Minecraft server. TL;DR:</p>
-<ul>
-<li>Minecraft server hostname (copy/paste to join): minecraft.poweredbyjeff.com</li>
-<li>Teamspeak3: <a href="ts3server://ts3.poweredbyjeff.com" target="_blank" rel="noopener">ts3.poweredbyjeff.com</a></li>
-<li>Contact any Arbiter to get promoted to build access.</li>
-</ul>
-<p>My brief notes here only cover the software side of the setup; I’ll be doing something interesting once I build out my new home hypervisor (currently waiting on 1GB/s internet connection to get installed).<br>
-			
-				<p class="article-more-link">
-					<a href="/2014/03/22/My-ideal-Minecraft-server-buildout-v3/#more">Read More...</a>
 				</p>
       
     
@@ -626,7 +621,7 @@
 		<a href="/">Powered By Jeff</a>
 	</h1>
 	<span class="copyright">
-		&copy; 2018 Jeff Ferrari<br>
+		&copy; 2020 Jeff Ferrari<br>
 		The official website of Jeff Ferrari
 	</span>
 </footer>
