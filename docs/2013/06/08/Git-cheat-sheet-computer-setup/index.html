@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>Git cheat sheet - computer setup | Powered By Jeff</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="January 2015 update: these days I generally use the powerful SourceTree tool from Atlassian. While it’s great to be a purist, sometimes I just need to get the “job done”. The below still applies when">
+<meta name="keywords" content="programming,git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git cheat sheet - computer setup">
+<meta property="og:url" content="https://www.poweredbyjeff.com/2013/06/08/Git-cheat-sheet-computer-setup/index.html">
+<meta property="og:site_name" content="Powered By Jeff">
+<meta property="og:description" content="January 2015 update: these days I generally use the powerful SourceTree tool from Atlassian. While it’s great to be a purist, sometimes I just need to get the “job done”. The below still applies when">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2015-01-26T03:55:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git cheat sheet - computer setup">
+<meta name="twitter:description" content="January 2015 update: these days I generally use the powerful SourceTree tool from Atlassian. While it’s great to be a purist, sometimes I just need to get the “job done”. The below still applies when">
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43838521-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div class="mobile-nav-panel">
+	<i class="icon-reorder icon-large"></i>
+</div>
+<header id="header">
+	<h1 class="blog-title">
+		<a href="/">Powered By Jeff</a>
+	</h1>
+	<nav class="nav">
+		<ul>
+			<li><a href="https://github.com/tuxillator">GitHub</a></li><li><a href="https://discord.gg/vet2u5J">Discord</a></li><li><a href="https://www.instagram.com/tuxillator/">Instagram</a></li><li><a href="http://www.linkedin.com/in/jjferrari">LinkedIn</a></li>
+		</ul>
+	</nav>
+</header>
+
+    <div id="main">
+      <article id="post-Git-cheat-sheet-computer-setup" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2013/06/08/Git-cheat-sheet-computer-setup/" class="article-date">
+  <time datetime="2013-06-07T16:01:00.000Z" itemprop="datePublished">2013-06-08</time>
+</a>
+		</span>
+		<span class="meta-elements author">Jeff Ferrari</span>
+		<div class="commentscount">
+			
+				<a href="https://www.poweredbyjeff.com/2013/06/08/Git-cheat-sheet-computer-setup/#disqus_thread" class="article-comment-link">Comments</a>
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 class="article-title entry-title" itemprop="name">
+      Git cheat sheet - computer setup
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<p><em><em>January 2015 update:</em> these days I generally use the powerful <a href="http://www.sourcetreeapp.com" target="_blank" rel="noopener">SourceTree tool from Atlassian</a>. While it’s great to be a purist, sometimes I just need to get the “job done”. The below still applies when I’m working exclusively in a shell (generally on a remote box).</em></p>
+<p>These are some post-installation commands I use to get Git quickly into a working, friendly to use state - cherry-picked from <a href="http://git-scm.com/book/en/Customizing-Git-Git-Configuration" target="_blank" rel="noopener">http://git-scm.com/book/en/Customizing-Git-Git-Configuration</a>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># Required. Tell git who you are... appears in commit logs.</span><br><span class="line">git config --global user.email &quot;youremail@example.com&quot;</span><br><span class="line">git config --global user.name &quot;Your Name&quot;</span><br><span class="line"></span><br><span class="line"># Optional! Some preferences to ease the eye and editing</span><br><span class="line">git config --global core.editor nano</span><br><span class="line">git config --global color.ui true</span><br></pre></td></tr></table></figure>
+
+<p>This list may grow/update over time, but this I find gets me out of the gate and over the minor annoyances quickly when using git on a fresh machine.</p>
+<a id="more"></a>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">programming</a></li></ul>
+
+			</span>
+		</div>
+	</footer>
+	
+    
+<nav id="article-nav">
+  
+    <a href="/2013/06/15/Mount-SSH-on-a-Mac-using-Macports-aka-the-easy-way/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Mount SSH on a Mac using Macports (aka the easy way)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2013/06/04/Telstra-NBN-Fibre-is-ridiculously-expensive/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          Telstra NBN Fibre is ridiculously expensive
+        
+      </div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+    </div>
+    <footer id="footer">
+	<h1 class="footer-blog-title">
+		<a href="/">Powered By Jeff</a>
+	</h1>
+	<span class="copyright">
+		&copy; 2020 Jeff Ferrari<br>
+		The official website of Jeff Ferrari
+	</span>
+</footer>
+
+    
+<script>
+  var disqus_shortname = 'tuxillator';
+  
+  var disqus_url = 'https://www.poweredbyjeff.com/2013/06/08/Git-cheat-sheet-computer-setup/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

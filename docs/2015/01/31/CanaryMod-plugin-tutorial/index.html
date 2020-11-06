@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>CanaryMod plugin tutorial | Powered By Jeff</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="It’s been a very busy start to 2015! But to keep the chops sharp I decided to try writing a few CanaryMod plugins. It took some effort to get a basic build environment going so I made a tutorial for c">
+<meta name="keywords" content="programming,minecraft,java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CanaryMod plugin tutorial">
+<meta property="og:url" content="https://www.poweredbyjeff.com/2015/01/31/CanaryMod-plugin-tutorial/index.html">
+<meta property="og:site_name" content="Powered By Jeff">
+<meta property="og:description" content="It’s been a very busy start to 2015! But to keep the chops sharp I decided to try writing a few CanaryMod plugins. It took some effort to get a basic build environment going so I made a tutorial for c">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://www.poweredbyjeff.com/2015/01/31/CanaryMod-plugin-tutorial/javadoc-example.png">
+<meta property="og:image" content="https://www.poweredbyjeff.com/2015/01/31/CanaryMod-plugin-tutorial/newproject.png">
+<meta property="og:image" content="https://www.poweredbyjeff.com/2015/01/31/CanaryMod-plugin-tutorial/maven-scm.png">
+<meta property="og:image" content="https://www.poweredbyjeff.com/2015/01/31/CanaryMod-plugin-tutorial/maven-encoding.png">
+<meta property="og:image" content="https://www.poweredbyjeff.com/2015/01/31/CanaryMod-plugin-tutorial/maven-dependency.png">
+<meta property="og:image" content="https://www.poweredbyjeff.com/2015/01/31/CanaryMod-plugin-tutorial/package-target.png">
+<meta property="og:updated_time" content="2020-07-08T04:00:21.993Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CanaryMod plugin tutorial">
+<meta name="twitter:description" content="It’s been a very busy start to 2015! But to keep the chops sharp I decided to try writing a few CanaryMod plugins. It took some effort to get a basic build environment going so I made a tutorial for c">
+<meta name="twitter:image" content="https://www.poweredbyjeff.com/2015/01/31/CanaryMod-plugin-tutorial/javadoc-example.png">
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43838521-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div class="mobile-nav-panel">
+	<i class="icon-reorder icon-large"></i>
+</div>
+<header id="header">
+	<h1 class="blog-title">
+		<a href="/">Powered By Jeff</a>
+	</h1>
+	<nav class="nav">
+		<ul>
+			<li><a href="https://github.com/tuxillator">GitHub</a></li><li><a href="https://discord.gg/vet2u5J">Discord</a></li><li><a href="https://www.instagram.com/tuxillator/">Instagram</a></li><li><a href="http://www.linkedin.com/in/jjferrari">LinkedIn</a></li>
+		</ul>
+	</nav>
+</header>
+
+    <div id="main">
+      <article id="post-CanaryMod-plugin-tutorial" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2015/01/31/CanaryMod-plugin-tutorial/" class="article-date">
+  <time datetime="2015-01-30T17:50:10.000Z" itemprop="datePublished">2015-01-31</time>
+</a>
+		</span>
+		<span class="meta-elements author">Jeff Ferrari</span>
+		<div class="commentscount">
+			
+				<a href="https://www.poweredbyjeff.com/2015/01/31/CanaryMod-plugin-tutorial/#disqus_thread" class="article-comment-link">Comments</a>
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 class="article-title entry-title" itemprop="name">
+      CanaryMod plugin tutorial
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<p>It’s been a very busy start to 2015! But to keep the chops sharp I decided to try writing a few CanaryMod plugins. It took some effort to get a basic build environment going so I made a <a href="/canarymod-eclipse-tutorial/">tutorial for creating CanaryMod plugins using Eclipse</a> out of my notes.</p>
+<p>It’s been about 12 years since I built anything serious in Java. I mean literally: <a href="http://en.wikipedia.org/wiki/Java_version_history" target="_blank" rel="noopener">Java 1.4 was considered new</a>. Anyway it was fun and hopefully not too many errors. Cheers and enjoy!</p>
+<a id="more"></a>
+
+<p><em>UPDATE: I’ve moved the article in it’s entirety in the blog post instead. This is mainly a reorg, it does seem this project is dead but retaining this content for posterity.</em></p>
+<h2 id="Let’s-begin…"><a href="#Let’s-begin…" class="headerlink" title="Let’s begin…"></a>Let’s begin…</h2><p>This is a detailed guide for setting up Eclipse to develop CanaryMod plugins. <a href="http://canarymod.net" target="_blank" rel="noopener">CanaryMod</a> is a Minecraft server implementation with a powerful API layer on top. Similar in principle to <a href="http://bukkit.org/" target="_blank" rel="noopener">CraftBukkit</a> and <a href="http://www.spigotmc.org/" target="_blank" rel="noopener">Spigot</a> but without the <a href="http://dl.bukkit.org/dmca/notification.txt" target="_blank" rel="noopener">legal baggage</a>.</p>
+<p>We will start with setting up the environment, building a simple yet functional plugin and finally publishing to Github. I wrote this tutorial on Mac OS X (go Apple!) but similar instructions should apply for Windows/Linux folks.</p>
+<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><ul>
+<li><a href="http://www.oracle.com/technetwork/articles/javase/index-jsp-138363.html" target="_blank" rel="noopener">Java SE SDK</a>.</li>
+<li><a href="http://www.eclipse.org/downloads/" target="_blank" rel="noopener">Eclipse IDE for Java Developers</a>: this tutorial is based on version 4.4. The Java Developer version contains Maven and Git integration that are both necessary for this tutorial.</li>
+<li>A <a href="http://github.com" target="_blank" rel="noopener">Github account</a> (optional): it’s free! And open source is great.</li>
+<li>Enable JavaDocs from Maven repositories: Eclipse supports referencing JavaDocs from Maven repositories and integrating into your IDE. To enable this integration in Eclipse go to: Preferences &gt; Maven, tick “Download Artifact JavaDoc” and click OK.<br><img src="javadoc-example.png" alt="JavaDoc integration from Maven repo"></li>
+</ul>
+<p>Once you have the requirements installed and running, launch Eclipse to get ready to make your first CanaryMod plugin!</p>
+<h2 id="Set-up-the-project"><a href="#Set-up-the-project" class="headerlink" title="Set up the project"></a>Set up the project</h2><p>Each plugin will be contained in a standalone project in Eclipse. Let’s set that up now:</p>
+<ol>
+<li>In the Eclipse menu, go to: File &gt; New &gt; Java Project.</li>
+<li>Give the project a name - this will be the “marketing” name of your cool plugin, and ideally will match the Github repository name when you’re done.</li>
+<li>Set “Use an execution environment JRE” to <strong>JavaSE-1.6</strong>. This will be the minimum Java JRE version your plugin runs on. You can target higher Java versions, but will need to <a href="http://canarymod.net/forum/plugins-board/plugineer-requests/readme-before-making-request-3241" target="_blank" rel="noopener">note that in your post</a> when you publish your plugin.</li>
+<li>Leave the rest at defaults, click Next.</li>
+<li>Click Finish.<br><img src="newproject.png" alt="new project creation"></li>
+</ol>
+<p><em>The handbook adds the CanaryLib.jar to the Libraries here. Do not do this, we will pull CanaryLib in as a Maven dependency further on.</em></p>
+<h2 id="Convert-project-to-Maven"><a href="#Convert-project-to-Maven" class="headerlink" title="Convert project to Maven"></a>Convert project to Maven</h2><p>Your project is now created, but let’s hook Maven up to CanaryLib so you can begin coding:</p>
+<ol>
+<li>Go to Package Explorer (on the left) and right click your project.</li>
+<li>Go to Configure &gt; Convert to Maven Project.</li>
+<li>Set the group ID to your website’s domain name if you have one (e.g. com.poweredbyjeff).</li>
+<li>Copy the artifact ID down to Name and optionally set a description.</li>
+<li>Click Finish. You should now be able to see a pom.xml file in your Package Explorer.</li>
+</ol>
+<h2 id="Configure-Maven"><a href="#Configure-Maven" class="headerlink" title="Configure Maven"></a>Configure Maven</h2><p>Double-click to open the pom.xml file. In the Overview tab:</p>
+<ol>
+<li>Copy/paste <a href="http://repo.visualillusionsent.net/repository/public/" target="_blank" rel="noopener">http://repo.visualillusionsent.net/repository/public/</a> into SCM&gt;URL.</li>
+<li>Under Properties, click Create. Set name to project.build.sourceEncoding and value to UTF-8 , click OK.<br><img src="maven-scm.png" alt="Maven SCM"><img src="maven-encoding.png" alt="The source encoding property"></li>
+<li>Go to the Dependencies tab. Click Add under Dependencies (<strong>not Dependency Management!!</strong>).</li>
+<li>Configure fields as follows:<ul>
+<li>Group ID = net.canarymod</li>
+<li>Artifact ID = CanaryLib</li>
+<li>Version ID = [1.0.0,)</li>
+</ul>
+</li>
+<li>Leave the rest as default and click OK.</li>
+<li>Go to the menubar and hit File &gt; Save to save your pom.xml.<br><img src="maven-dependency.png" alt="Adding the CanaryLib dependency"></li>
+</ol>
+<p>More information about Maven can be found in the <a href="http://canarymod.net/books/canarymod-development/introduction-using-maven-canarymod" target="_blank" rel="noopener">CanaryMod handbook</a>.</p>
+<h2 id="A-basic-plugin"><a href="#A-basic-plugin" class="headerlink" title="A basic plugin"></a>A basic plugin</h2><p>You are now ready to do the fun part - writing your cool plugin! Until I’ve expanded this section, work through the <a href="http://canarymod.net/books/api-reference/creating-hello-world" target="_blank" rel="noopener">Hello World example in the Canary Handbook</a>.</p>
+<p><em>Remember to ignore the bit about adding CanaryLib at the start; begin from “do the packages” and come back here when you’re ready to create a jar.</em></p>
+<h2 id="Creating-the-jar-file"><a href="#Creating-the-jar-file" class="headerlink" title="Creating the jar file"></a>Creating the jar file</h2><p>The “package” target is the one that actually creates the jar file, but unfortunately isn’t in the default list of Run targets. To build the jar the first time, go to the Package Explorer:</p>
+<ul>
+<li>Right click your project &gt; Run As… &gt; Maven Build…</li>
+<li>Put the word “package” in the goal box.</li>
+<li>Click run.</li>
+</ul>
+<p>After this first run, you can just use Run As… &gt; Maven Build (note the missing elipsis) to rebuild your jar file. Happy plugineering!</p>
+<p><img src="package-target.png" alt="setting target for Maven build"></p>
+<h2 id="Todo"><a href="#Todo" class="headerlink" title="Todo"></a>Todo</h2><ul>
+<li>Make a tl,dr version that bootstraps a project (possibly a pre-made pom.xml generator or ready for import Eclipse project).</li>
+<li>Do rest of plugin creation instead of referring to handbook.</li>
+<li>Write up Github publishing portion.</li>
+</ul>
+<h2 id="Changelog"><a href="#Changelog" class="headerlink" title="Changelog"></a>Changelog</h2><ul>
+<li>Wrote page. Drank beer.</li>
+</ul>
+<p><em>This guide is largely inspired by the <a href="http://canarymod.net/books/" target="_blank" rel="noopener">official CanaryMod handbooks</a>. Kudos to the relatively small CanaryMod team for building and continuing to maintain such a large project!</em></p>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/minecraft/">minecraft</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">programming</a></li></ul>
+
+			</span>
+		</div>
+	</footer>
+	
+    
+<nav id="article-nav">
+  
+    <a href="/2015/02/01/Mouse-keyboard-and-brain-synergy-with-Synergy/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Mouse keyboard and brain synergy with Synergy
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/12/26/Merry-Christmas-new-website/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          Merry Christmas, new website!
+        
+      </div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+    </div>
+    <footer id="footer">
+	<h1 class="footer-blog-title">
+		<a href="/">Powered By Jeff</a>
+	</h1>
+	<span class="copyright">
+		&copy; 2020 Jeff Ferrari<br>
+		The official website of Jeff Ferrari
+	</span>
+</footer>
+
+    
+<script>
+  var disqus_shortname = 'tuxillator';
+  
+  var disqus_url = 'https://www.poweredbyjeff.com/2015/01/31/CanaryMod-plugin-tutorial/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

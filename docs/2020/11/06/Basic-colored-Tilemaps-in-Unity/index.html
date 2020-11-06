@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>Basic colored Tilemaps in Unity | Powered By Jeff</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="Unity comes with built-in Grid and Tilemap class which makes it super easy to build 2D games that use rectangular, hexagonal or isometric layouts. Here is how you can use this to generate plain colour">
+<meta name="keywords" content="programming,unity,c#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Basic colored Tilemaps in Unity">
+<meta property="og:url" content="https://www.poweredbyjeff.com/2020/11/06/Basic-colored-Tilemaps-in-Unity/index.html">
+<meta property="og:site_name" content="Powered By Jeff">
+<meta property="og:description" content="Unity comes with built-in Grid and Tilemap class which makes it super easy to build 2D games that use rectangular, hexagonal or isometric layouts. Here is how you can use this to generate plain colour">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-11-06T08:49:13.754Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Basic colored Tilemaps in Unity">
+<meta name="twitter:description" content="Unity comes with built-in Grid and Tilemap class which makes it super easy to build 2D games that use rectangular, hexagonal or isometric layouts. Here is how you can use this to generate plain colour">
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43838521-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div class="mobile-nav-panel">
+	<i class="icon-reorder icon-large"></i>
+</div>
+<header id="header">
+	<h1 class="blog-title">
+		<a href="/">Powered By Jeff</a>
+	</h1>
+	<nav class="nav">
+		<ul>
+			<li><a href="https://github.com/tuxillator">GitHub</a></li><li><a href="https://discord.gg/vet2u5J">Discord</a></li><li><a href="https://www.instagram.com/tuxillator/">Instagram</a></li><li><a href="http://www.linkedin.com/in/jjferrari">LinkedIn</a></li>
+		</ul>
+	</nav>
+</header>
+
+    <div id="main">
+      <article id="post-Basic-colored-Tilemaps-in-Unity" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2020/11/06/Basic-colored-Tilemaps-in-Unity/" class="article-date">
+  <time datetime="2020-11-06T08:32:29.000Z" itemprop="datePublished">2020-11-06</time>
+</a>
+		</span>
+		<span class="meta-elements author">Jeff Ferrari</span>
+		<div class="commentscount">
+			
+				<a href="https://www.poweredbyjeff.com/2020/11/06/Basic-colored-Tilemaps-in-Unity/#disqus_thread" class="article-comment-link">Comments</a>
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 class="article-title entry-title" itemprop="name">
+      Basic colored Tilemaps in Unity
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<p>Unity comes with built-in <a href="https://docs.unity3d.com/2019.3/Documentation/ScriptReference/Grid.html" target="_blank" rel="noopener">Grid</a> and <a href="https://docs.unity3d.com/Manual/class-Tilemap.html" target="_blank" rel="noopener">Tilemap</a> class which makes it super easy to build 2D games that use rectangular, hexagonal or isometric layouts. Here is how you can use this to generate plain colours in place of each tile imperatively rather than through the GUI.</p>
+<a id="more"></a>
+
+<p>The general process is as follows:</p>
+<ul>
+<li>Set up a material applied to the tile map, anything works</li>
+<li>Create a texture matching the grid size - I chose 16 so I have flexibility to later add cute textures, but it doesn’t matter</li>
+<li>Generate a sprite from said texture and apply it to a tile</li>
+<li>Add the tile(s)</li>
+</ul>
+<h2 id="Generating-a-texture"><a href="#Generating-a-texture" class="headerlink" title="Generating a texture"></a>Generating a texture</h2><p>This is fairly straightforward, just creating an empty texture and setting all the pixel colours. Don’t forget to <code>Apply()</code>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// Generate the texture</span><br><span class="line">Color grassColor = Color.green; // you could parameterize this of course</span><br><span class="line">Texture2D grassTex = new Texture2D(16, 16);</span><br><span class="line">for (int x = 0; x &lt; 16; x++) &#123;</span><br><span class="line">	for (int y = 0; y &lt; 16; y++) &#123;</span><br><span class="line">		grassTex.setPixel(x, y, grassColor);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">grassTex.Apply();</span><br></pre></td></tr></table></figure>
+
+<h2 id="Generating-a-single-tile"><a href="#Generating-a-single-tile" class="headerlink" title="Generating a single tile"></a>Generating a single tile</h2><p>Tiles need /sprites/ not textures added to them. So first we need to create a sprite and apply the above texture:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Sprite grassSprite = Sprite.Create(grassTex, new Rect(0, 0, 16, 16), new Vector2(0.5f, 0.5f, 16f);</span><br><span class="line">Tile grassTile = ScriptableObject.CreateInstance&lt;Tile&gt;();</span><br><span class="line">grassTile.sprite = grassSprite;</span><br></pre></td></tr></table></figure>
+
+<p>Of course the above 2 steps you can repeat for any other placeholder tiles you want.</p>
+<h2 id="Applying-the-Tile-to-the-Tilemap"><a href="#Applying-the-Tile-to-the-Tilemap" class="headerlink" title="Applying the Tile to the Tilemap"></a>Applying the Tile to the Tilemap</h2><p>Add this tile as you wish using the usual <code>SetTile()</code> function, something like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int mapsize = 100;</span><br><span class="line">for (int x = 0; x &lt; mapsize; x++) &#123;</span><br><span class="line">	for (int x = 0; x &lt; mapsize; x++) &#123;</span><br><span class="line">		tilemap.SetTile(new Vector3Int(x, y, 0), grassTile);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Next I’ll be looking at the classic Perlin noise approach to generating some more interesting dynamic tile terrain using this technique :)</p>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/unity/">unity</a></li></ul>
+
+			</span>
+		</div>
+	</footer>
+	
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/01/15/Dynamic-testing-with-Mocha-and-async-data-sources/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          Dynamic testing with Mocha and async data sources
+        
+      </div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+    </div>
+    <footer id="footer">
+	<h1 class="footer-blog-title">
+		<a href="/">Powered By Jeff</a>
+	</h1>
+	<span class="copyright">
+		&copy; 2020 Jeff Ferrari<br>
+		The official website of Jeff Ferrari
+	</span>
+</footer>
+
+    
+<script>
+  var disqus_shortname = 'tuxillator';
+  
+  var disqus_url = 'https://www.poweredbyjeff.com/2020/11/06/Basic-colored-Tilemaps-in-Unity/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

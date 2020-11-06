@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>Installing and booting to Intel 750 SSD in Debian 8 | Powered By Jeff</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="The Intel 750 series flash storage is a beast, without doubt one of the top tier consumer storage platforms on the market today. This can deliver up to 2500 MB/s reads… for comparison the best SSDs on">
+<meta name="keywords" content="serveradmin,linux,kernel,intel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Installing and booting to Intel 750 SSD in Debian 8">
+<meta property="og:url" content="https://www.poweredbyjeff.com/2015/10/29/Intel-750-SSD-in-Debian-Jessie/index.html">
+<meta property="og:site_name" content="Powered By Jeff">
+<meta property="og:description" content="The Intel 750 series flash storage is a beast, without doubt one of the top tier consumer storage platforms on the market today. This can deliver up to 2500 MB/s reads… for comparison the best SSDs on">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-07-08T04:00:21.997Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Installing and booting to Intel 750 SSD in Debian 8">
+<meta name="twitter:description" content="The Intel 750 series flash storage is a beast, without doubt one of the top tier consumer storage platforms on the market today. This can deliver up to 2500 MB/s reads… for comparison the best SSDs on">
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43838521-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div class="mobile-nav-panel">
+	<i class="icon-reorder icon-large"></i>
+</div>
+<header id="header">
+	<h1 class="blog-title">
+		<a href="/">Powered By Jeff</a>
+	</h1>
+	<nav class="nav">
+		<ul>
+			<li><a href="https://github.com/tuxillator">GitHub</a></li><li><a href="https://discord.gg/vet2u5J">Discord</a></li><li><a href="https://www.instagram.com/tuxillator/">Instagram</a></li><li><a href="http://www.linkedin.com/in/jjferrari">LinkedIn</a></li>
+		</ul>
+	</nav>
+</header>
+
+    <div id="main">
+      <article id="post-Intel-750-SSD-in-Debian-Jessie" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2015/10/29/Intel-750-SSD-in-Debian-Jessie/" class="article-date">
+  <time datetime="2015-10-29T13:39:36.000Z" itemprop="datePublished">2015-10-29</time>
+</a>
+		</span>
+		<span class="meta-elements author">Jeff Ferrari</span>
+		<div class="commentscount">
+			
+				<a href="https://www.poweredbyjeff.com/2015/10/29/Intel-750-SSD-in-Debian-Jessie/#disqus_thread" class="article-comment-link">Comments</a>
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 class="article-title entry-title" itemprop="name">
+      Installing and booting to Intel 750 SSD in Debian 8
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<p>The <a href="http://www.intel.com/content/www/us/en/solid-state-drives/solid-state-drives-750-series.html" target="_blank" rel="noopener">Intel 750 series flash storage</a> is a beast, without doubt one of the top tier consumer storage platforms on the market today. This can deliver up to 2500 MB/s reads… for comparison the best SSDs on the market today are limited to ~550 MB/s due to the SATA interface.</p>
+<h2 id="Installing"><a href="#Installing" class="headerlink" title="Installing"></a>Installing</h2><p>To use this storage in Debian Jessie, a little black magic is involved particularly if you want to use it as a boot drive.</p>
+<a id="more"></a>
+<ul>
+<li>Boot to the Debian net installer, choose Advanced options… graphical expert install.</li>
+<li>Go through setup, ensure backports are enabled when configuring package manager. Leave anything you’re not sure of at defaults. <strong>Stop before installing boot loader, it will fail (see next step).</strong></li>
+<li><a href="https://communities.intel.com/community/itpeernetwork/blog/2014/10/03/upgrade-a-nvme-capable-linux-kernel" target="_blank" rel="noopener">NVME support</a> is much better from 3.19 kernels, but Debian 8 only ships with 3.16. Additionally the release version of grub2 has an install bug where it doesn’t properly recognise NVMe devices. Let’s pull a more recent kernel and grub-efi from jessie-backports to resolve - choose “execute a shell” and type:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cd /target</span><br><span class="line">mount -t proc proc proc/</span><br><span class="line">mount --rbind /sys sys/</span><br><span class="line">mount --rbind /dev dev/</span><br><span class="line">mount --rbind /run run/</span><br><span class="line">chroot . /bin/bash</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>Standard stuff… chrooted to the install, we can now run commmands like we had actually booted.</p>
+<ul>
+<li>Grab the backported kernel and grub2 UEFI bootloader - remember to install the kernel matching your architecture:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">apt-get update</span><br><span class="line">apt-get -t jessie-backports install linux-image-amd64</span><br><span class="line">apt-get -t jessie-backports install grub-efi</span><br><span class="line">update-grub</span><br><span class="line">grub-install</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>If all went to plan you’ve got a &gt; 3.19 kernel and grub installed a UEFI bootloader in the ESP partition.</p>
+<ul>
+<li>Type <code>exit</code> to return to the graphical installer. Choose “continue without bootloader” as we installed it via the shell, and finish the install. After it reboots you should be looking at your shiny and super fast Debian install. A quick check if you’re getting decent speed from the card:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo hdparm -Tt --direct /dev/nvme0n1</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>Enjoy!</p>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/intel/">intel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kernel/">kernel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/serveradmin/">serveradmin</a></li></ul>
+
+			</span>
+		</div>
+	</footer>
+	
+    
+<nav id="article-nav">
+  
+    <a href="/2018/05/08/Intermittent-blogging-life-good-times-and-bad/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Intermittent blogging, life, good times and bad
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/02/01/Mouse-keyboard-and-brain-synergy-with-Synergy/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          Mouse keyboard and brain synergy with Synergy
+        
+      </div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+    </div>
+    <footer id="footer">
+	<h1 class="footer-blog-title">
+		<a href="/">Powered By Jeff</a>
+	</h1>
+	<span class="copyright">
+		&copy; 2020 Jeff Ferrari<br>
+		The official website of Jeff Ferrari
+	</span>
+</footer>
+
+    
+<script>
+  var disqus_shortname = 'tuxillator';
+  
+  var disqus_url = 'https://www.poweredbyjeff.com/2015/10/29/Intel-750-SSD-in-Debian-Jessie/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

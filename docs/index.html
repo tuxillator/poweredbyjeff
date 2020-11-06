@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>Powered By Jeff</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="The personal website of Jeff Ferrari">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Powered By Jeff">
+<meta property="og:url" content="https://www.poweredbyjeff.com/index.html">
+<meta property="og:site_name" content="Powered By Jeff">
+<meta property="og:description" content="The personal website of Jeff Ferrari">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Powered By Jeff">
+<meta name="twitter:description" content="The personal website of Jeff Ferrari">
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43838521-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div class="mobile-nav-panel">
+	<i class="icon-reorder icon-large"></i>
+</div>
+<header id="header">
+	<h1 class="blog-title">
+		<a href="/">Powered By Jeff</a>
+	</h1>
+	<nav class="nav">
+		<ul>
+			<li><a href="https://github.com/tuxillator">GitHub</a></li><li><a href="https://discord.gg/vet2u5J">Discord</a></li><li><a href="https://www.instagram.com/tuxillator/">Instagram</a></li><li><a href="http://www.linkedin.com/in/jjferrari">LinkedIn</a></li>
+		</ul>
+	</nav>
+</header>
+
+    <div id="main">
+      
+  
+    <article id="post-Basic-colored-Tilemaps-in-Unity" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2020/11/06/Basic-colored-Tilemaps-in-Unity/" class="article-date">
+  <time datetime="2020-11-06T08:32:29.000Z" itemprop="datePublished">2020-11-06</time>
+</a>
+		</span>
+		<span class="meta-elements author">Jeff Ferrari</span>
+		<div class="commentscount">
+			
+				<a href="https://www.poweredbyjeff.com/2020/11/06/Basic-colored-Tilemaps-in-Unity/#disqus_thread" class="article-comment-link">Comments</a>
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 itemprop="name" class="entry-title">
+      <a class="article-title" href="/2020/11/06/Basic-colored-Tilemaps-in-Unity/">Basic colored Tilemaps in Unity</a>
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+			<p>Unity comes with built-in <a href="https://docs.unity3d.com/2019.3/Documentation/ScriptReference/Grid.html" target="_blank" rel="noopener">Grid</a> and <a href="https://docs.unity3d.com/Manual/class-Tilemap.html" target="_blank" rel="noopener">Tilemap</a> class which makes it super easy to build 2D games that use rectangular, hexagonal or isometric layouts. Here is how you can use this to generate plain colours in place of each tile imperatively rather than through the GUI.</p>
+			
+				<p class="article-more-link">
+					<a href="/2020/11/06/Basic-colored-Tilemaps-in-Unity/#more">Read More...</a>
+				</p>
+      
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/unity/">unity</a></li></ul>
+
+			</span>
+		</div>
+	</footer>
+	
+</article>
+
+
+	<hr class="article-devider">
+
+
+
+  
+    <article id="post-Dynamic-testing-with-Mocha-and-async-data-sources" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2020/01/15/Dynamic-testing-with-Mocha-and-async-data-sources/" class="article-date">
+  <time datetime="2020-01-15T04:37:06.000Z" itemprop="datePublished">2020-01-15</time>
+</a>
+		</span>
+		<span class="meta-elements author">Jeff Ferrari</span>
+		<div class="commentscount">
+			
+				<a href="https://www.poweredbyjeff.com/2020/01/15/Dynamic-testing-with-Mocha-and-async-data-sources/#disqus_thread" class="article-comment-link">Comments</a>
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 itemprop="name" class="entry-title">
+      <a class="article-title" href="/2020/01/15/Dynamic-testing-with-Mocha-and-async-data-sources/">Dynamic testing with Mocha and async data sources</a>
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+			<p>Mocha &amp; Chai are fantastic libraries for BDD or TDD development, but don’t have a well documented method to do <strong>data driven testing</strong>. I define data driven testing here as dynamically generated tests, duplicated with the <em>structure and content of the data itself</em> being the varying input.</p>
+<p>The tricky thing about using these libraries for this purpose is that the test suite generation itself expects all the tests to be defined in advance. As a result, looping over the data and using the regular describe(), each(), it(), etc does not go well.</p>
+			
+				<p class="article-more-link">
+					<a href="/2020/01/15/Dynamic-testing-with-Mocha-and-async-data-sources/#more">Read More...</a>
+				</p>
+      
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/chai/">chai</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mocha/">mocha</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/testing/">testing</a></li></ul>
+
+			</span>
+		</div>
+	</footer>
+	
+</article>
+
+
+	<hr class="article-devider">
+
+
+
+  
+    <article id="post-Deploying-Hexo-website-to-Github-Pages" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2018/05/14/Deploying-Hexo-website-to-Github-Pages/" class="article-date">
+  <time datetime="2018-05-13T16:00:00.000Z" itemprop="datePublished">2018-05-14</time>
+</a>
+		</span>
+		<span class="meta-elements author">Jeff Ferrari</span>
+		<div class="commentscount">
+			
+				<a href="https://www.poweredbyjeff.com/2018/05/14/Deploying-Hexo-website-to-Github-Pages/#disqus_thread" class="article-comment-link">Comments</a>
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 itemprop="name" class="entry-title">
+      <a class="article-title" href="/2018/05/14/Deploying-Hexo-website-to-Github-Pages/">Deploy a Hexo blog to Github Pages</a>
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+			<p><a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> is a powerful static website generator that can be combined with <a href="https://pages.github.com" target="_blank" rel="noopener">Github Pages</a> to run a personal blog. This pairing is a convenient, performant and free blogging platform that is very flexible and relatively simple.</p>
+<p>Most instructions make running this combination more complicated than it needs to be. If you’re already using Github to publish your Hexo blog, read on to learn how to update your workflow and eliminate some plugins.</p>
+			
+				<p class="article-more-link">
+					<a href="/2018/05/14/Deploying-Hexo-website-to-Github-Pages/#more">Read More...</a>
+				</p>
+      
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cname/">cname</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+
+			</span>
+		</div>
+	</footer>
+	
+</article>
+
+
+	<hr class="article-devider">
+
+
+
+  
+    <article id="post-Intermittent-blogging-life-good-times-and-bad" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2018/05/08/Intermittent-blogging-life-good-times-and-bad/" class="article-date">
+  <time datetime="2018-05-08T11:24:45.000Z" itemprop="datePublished">2018-05-08</time>
+</a>
+		</span>
+		<span class="meta-elements author">Jeff Ferrari</span>
+		<div class="commentscount">
+			
+				<a href="https://www.poweredbyjeff.com/2018/05/08/Intermittent-blogging-life-good-times-and-bad/#disqus_thread" class="article-comment-link">Comments</a>
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 itemprop="name" class="entry-title">
+      <a class="article-title" href="/2018/05/08/Intermittent-blogging-life-good-times-and-bad/">Intermittent blogging, life, good times and bad</a>
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<p>It’s been almost 3 years since I’ve posted on this blog! Disregarding some minor aesthetic fixes last November, this setup has remained relatively untouched and reliable over that time. A lot to be said for static site generation when your needs are simple - thanks Github and Hexo!</p>
+<p>In that time much has happened in the world - one of the more exciting being SpaceX <a href="https://www.youtube.com/watch?v=ANv5UfZsvZQ" target="_blank" rel="noopener">landing reusable rockets vertically</a> (and then even <a href="https://www.youtube.com/watch?v=A0FZIwabctw" target="_blank" rel="noopener">bigger ones simultaneously</a>, in science fiction fashion).</p>
+<p>Anyway… for those of you not on social media or working at Apple I’m still alive :) peace!</p>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/life/">life</a></li></ul>
+
+			</span>
+		</div>
+	</footer>
+	
+</article>
+
+
+	<hr class="article-devider">
+
+
+
+  
+    <article id="post-Intel-750-SSD-in-Debian-Jessie" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2015/10/29/Intel-750-SSD-in-Debian-Jessie/" class="article-date">
+  <time datetime="2015-10-29T13:39:36.000Z" itemprop="datePublished">2015-10-29</time>
+</a>
+		</span>
+		<span class="meta-elements author">Jeff Ferrari</span>
+		<div class="commentscount">
+			
+				<a href="https://www.poweredbyjeff.com/2015/10/29/Intel-750-SSD-in-Debian-Jessie/#disqus_thread" class="article-comment-link">Comments</a>
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 itemprop="name" class="entry-title">
+      <a class="article-title" href="/2015/10/29/Intel-750-SSD-in-Debian-Jessie/">Installing and booting to Intel 750 SSD in Debian 8</a>
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+			<p>The <a href="http://www.intel.com/content/www/us/en/solid-state-drives/solid-state-drives-750-series.html" target="_blank" rel="noopener">Intel 750 series flash storage</a> is a beast, without doubt one of the top tier consumer storage platforms on the market today. This can deliver up to 2500 MB/s reads… for comparison the best SSDs on the market today are limited to ~550 MB/s due to the SATA interface.</p>
+<h2 id="Installing"><a href="#Installing" class="headerlink" title="Installing"></a>Installing</h2><p>To use this storage in Debian Jessie, a little black magic is involved particularly if you want to use it as a boot drive.</p>
+			
+				<p class="article-more-link">
+					<a href="/2015/10/29/Intel-750-SSD-in-Debian-Jessie/#more">Read More...</a>
+				</p>
+      
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/intel/">intel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kernel/">kernel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/serveradmin/">serveradmin</a></li></ul>
+
+			</span>
+		</div>
+	</footer>
+	
+</article>
+
+
+	<hr class="article-devider">
+
+
+
+  
+    <article id="post-Mouse-keyboard-and-brain-synergy-with-Synergy" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2015/02/01/Mouse-keyboard-and-brain-synergy-with-Synergy/" class="article-date">
+  <time datetime="2015-02-01T11:01:49.000Z" itemprop="datePublished">2015-02-01</time>
+</a>
+		</span>
+		<span class="meta-elements author">Jeff Ferrari</span>
+		<div class="commentscount">
+			
+				<a href="https://www.poweredbyjeff.com/2015/02/01/Mouse-keyboard-and-brain-synergy-with-Synergy/#disqus_thread" class="article-comment-link">Comments</a>
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 itemprop="name" class="entry-title">
+      <a class="article-title" href="/2015/02/01/Mouse-keyboard-and-brain-synergy-with-Synergy/">Mouse keyboard and brain synergy with Synergy</a>
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+			<p>I’m a big fan of <a href="http://www.abyssoft.com/software/teleport/" target="_blank" rel="noopener">Teleport</a> on Mac OS X. If you’ve never used it before, you probably haven’t had to work with more than 1 Mac at a time. I’m not talking about remote access (SSH is my tool of choice for remote access). This is for an extended desktop experience with physically distinct machines. My mouse is connected to the Windows machine in the middle, Mac OS X on the laptop to the left and the Ubuntu guest VM console on the right all feel like one “extended desktop”.</p>
+<p>The problem with the tool is it’s platform specific… no workie with Windows or Linux. After some google-fu the currently accepted alternative is <a href="http://synergy-project.org/" target="_blank" rel="noopener">Synergy</a>. It’s basically a cross-platform tool that does the same thing - allow a computer to share keyboard and mouse to hosts on the LAN. It’s very nice, but here’s some gotchas along with solutions I found along the way…</p>
+			
+				<p class="article-more-link">
+					<a href="/2015/02/01/Mouse-keyboard-and-brain-synergy-with-Synergy/#more">Read More...</a>
+				</p>
+      
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+			</span>
+		</div>
+	</footer>
+	
+</article>
+
+
+	<hr class="article-devider">
+
+
+
+  
+    <article id="post-CanaryMod-plugin-tutorial" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2015/01/31/CanaryMod-plugin-tutorial/" class="article-date">
+  <time datetime="2015-01-30T17:50:10.000Z" itemprop="datePublished">2015-01-31</time>
+</a>
+		</span>
+		<span class="meta-elements author">Jeff Ferrari</span>
+		<div class="commentscount">
+			
+				<a href="https://www.poweredbyjeff.com/2015/01/31/CanaryMod-plugin-tutorial/#disqus_thread" class="article-comment-link">Comments</a>
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 itemprop="name" class="entry-title">
+      <a class="article-title" href="/2015/01/31/CanaryMod-plugin-tutorial/">CanaryMod plugin tutorial</a>
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+			<p>It’s been a very busy start to 2015! But to keep the chops sharp I decided to try writing a few CanaryMod plugins. It took some effort to get a basic build environment going so I made a <a href="/canarymod-eclipse-tutorial/">tutorial for creating CanaryMod plugins using Eclipse</a> out of my notes.</p>
+<p>It’s been about 12 years since I built anything serious in Java. I mean literally: <a href="http://en.wikipedia.org/wiki/Java_version_history" target="_blank" rel="noopener">Java 1.4 was considered new</a>. Anyway it was fun and hopefully not too many errors. Cheers and enjoy!</p>
+			
+				<p class="article-more-link">
+					<a href="/2015/01/31/CanaryMod-plugin-tutorial/#more">Read More...</a>
+				</p>
+      
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/minecraft/">minecraft</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">programming</a></li></ul>
+
+			</span>
+		</div>
+	</footer>
+	
+</article>
+
+
+	<hr class="article-devider">
+
+
+
+  
+    <article id="post-Merry-Christmas-new-website" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2014/12/26/Merry-Christmas-new-website/" class="article-date">
+  <time datetime="2014-12-25T16:53:53.000Z" itemprop="datePublished">2014-12-26</time>
+</a>
+		</span>
+		<span class="meta-elements author">Jeff Ferrari</span>
+		<div class="commentscount">
+			
+				<a href="https://www.poweredbyjeff.com/2014/12/26/Merry-Christmas-new-website/#disqus_thread" class="article-comment-link">Comments</a>
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 itemprop="name" class="entry-title">
+      <a class="article-title" href="/2014/12/26/Merry-Christmas-new-website/">Merry Christmas, new website!</a>
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+			<p>Merry Christmas! And obviously a new website… hope you all like it! Ironically it’s taken 12 years but I’ve gone full circle back to a static website (albeit using the powerful Hexo generator). Inspired by Node.js and it’s ilk, along with lots of toying with MEAN stacks and Git at both work and play, this is now a change tracked Github CDN hosted website.</p>
+<p>Either way - season’s greetings :)</p>
+			
+				<p class="article-more-link">
+					<a href="/2014/12/26/Merry-Christmas-new-website/#more">Read More...</a>
+				</p>
+      
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/serveradmin/">serveradmin</a></li></ul>
+
+			</span>
+		</div>
+	</footer>
+	
+</article>
+
+
+	<hr class="article-devider">
+
+
+
+  
+    <article id="post-PADI-Rescue-Emergency-Action-Plan-EAP-for-Tioman-Malaysia" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2014/12/08/PADI-Rescue-Emergency-Action-Plan-EAP-for-Tioman-Malaysia/" class="article-date">
+  <time datetime="2014-12-08T03:37:00.000Z" itemprop="datePublished">2014-12-08</time>
+</a>
+		</span>
+		<span class="meta-elements author">Jeff Ferrari</span>
+		<div class="commentscount">
+			
+				<a href="https://www.poweredbyjeff.com/2014/12/08/PADI-Rescue-Emergency-Action-Plan-EAP-for-Tioman-Malaysia/#disqus_thread" class="article-comment-link">Comments</a>
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 itemprop="name" class="entry-title">
+      <a class="article-title" href="/2014/12/08/PADI-Rescue-Emergency-Action-Plan-EAP-for-Tioman-Malaysia/">PADI Rescue Emergency Action Plan (EAP) for Tioman, Malaysia</a>
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+			<p>Earlier in the year I completed my PADI Rescue course. For those that enjoy diving more than once a year and are on the PADI bandwagon, I highly recommend completing this course. It makes you a safer and humbler diver, which if nothing else is what I see to be the most critical attributes to this sport.</p>
+<p>Without further ado, here it is! If you’re interested, the original PDFs are downloadable and printable when going to Tioman. Of course the usual disclaimer - please take out insurance, and I don’t guarantee the accuracy/updatedness of this document. Be a real diver, do your own preparation and dive safe. Peace!</p>
+<p><a href="EAP.pdf">Emergency Action Plan (pdf)</a><br><a href="EAPflowchart.pdf">Flowchart (pdf)</a></p>
+			
+				<p class="article-more-link">
+					<a href="/2014/12/08/PADI-Rescue-Emergency-Action-Plan-EAP-for-Tioman-Malaysia/#more">Read More...</a>
+				</p>
+      
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scubadiving/">scubadiving</a></li></ul>
+
+			</span>
+		</div>
+	</footer>
+	
+</article>
+
+
+	<hr class="article-devider">
+
+
+
+  
+    <article id="post-Macports-installed-MongoDB-won-t-start-under-fresh-install-OS-X-10-10-Yosemite" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2014/11/02/Macports-installed-MongoDB-won-t-start-under-fresh-install-OS-X-10-10-Yosemite/" class="article-date">
+  <time datetime="2014-11-02T03:02:00.000Z" itemprop="datePublished">2014-11-02</time>
+</a>
+		</span>
+		<span class="meta-elements author">Jeff Ferrari</span>
+		<div class="commentscount">
+			
+				<a href="https://www.poweredbyjeff.com/2014/11/02/Macports-installed-MongoDB-won-t-start-under-fresh-install-OS-X-10-10-Yosemite/#disqus_thread" class="article-comment-link">Comments</a>
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 itemprop="name" class="entry-title">
+      <a class="article-title" href="/2014/11/02/Macports-installed-MongoDB-won-t-start-under-fresh-install-OS-X-10-10-Yosemite/">Macports-installed MongoDB won&#39;t start under fresh install (OS X 10.10 Yosemite)</a>
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+			<p>I had problems getting MongoDB to start using launchd (my preferred method for portability) after a fresh Yosemite install. After initially suspecting the <code>_mongo</code> user was not being correctly created by the Macports installation script, it turned out to be a simple permissions issue.
+			
+				<p class="article-more-link">
+					<a href="/2014/11/02/Macports-installed-MongoDB-won-t-start-under-fresh-install-OS-X-10-10-Yosemite/#more">Read More...</a>
+				</p>
+      
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/macports/">macports</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongodb/">mongodb</a></li></ul>
+
+			</span>
+		</div>
+	</footer>
+	
+</article>
+
+
+	<hr class="article-devider">
+
+
+
+  
+  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
+  
+
+    </div>
+    <footer id="footer">
+	<h1 class="footer-blog-title">
+		<a href="/">Powered By Jeff</a>
+	</h1>
+	<span class="copyright">
+		&copy; 2020 Jeff Ferrari<br>
+		The official website of Jeff Ferrari
+	</span>
+</footer>
+
+    
+<script>
+  var disqus_shortname = 'tuxillator';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

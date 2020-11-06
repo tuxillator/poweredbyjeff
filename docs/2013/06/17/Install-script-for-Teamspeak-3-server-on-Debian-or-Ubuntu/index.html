@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>Install script for Teamspeak 3 server on Debian (or Ubuntu) | Powered By Jeff</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="The ‘teamspeak-server’ package built for Debian/Ubuntu at the time of writing this article is only for Teamspeak version 2, but everyone who is anyone these days uses TS3. After trolling around the In">
+<meta name="keywords" content="programming,serveradmin,teamspeak3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Install script for Teamspeak 3 server on Debian (or Ubuntu)">
+<meta property="og:url" content="https://www.poweredbyjeff.com/2013/06/17/Install-script-for-Teamspeak-3-server-on-Debian-or-Ubuntu/index.html">
+<meta property="og:site_name" content="Powered By Jeff">
+<meta property="og:description" content="The ‘teamspeak-server’ package built for Debian/Ubuntu at the time of writing this article is only for Teamspeak version 2, but everyone who is anyone these days uses TS3. After trolling around the In">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-07-08T04:00:21.989Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Install script for Teamspeak 3 server on Debian (or Ubuntu)">
+<meta name="twitter:description" content="The ‘teamspeak-server’ package built for Debian/Ubuntu at the time of writing this article is only for Teamspeak version 2, but everyone who is anyone these days uses TS3. After trolling around the In">
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43838521-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div class="mobile-nav-panel">
+	<i class="icon-reorder icon-large"></i>
+</div>
+<header id="header">
+	<h1 class="blog-title">
+		<a href="/">Powered By Jeff</a>
+	</h1>
+	<nav class="nav">
+		<ul>
+			<li><a href="https://github.com/tuxillator">GitHub</a></li><li><a href="https://discord.gg/vet2u5J">Discord</a></li><li><a href="https://www.instagram.com/tuxillator/">Instagram</a></li><li><a href="http://www.linkedin.com/in/jjferrari">LinkedIn</a></li>
+		</ul>
+	</nav>
+</header>
+
+    <div id="main">
+      <article id="post-Install-script-for-Teamspeak-3-server-on-Debian-or-Ubuntu" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2013/06/17/Install-script-for-Teamspeak-3-server-on-Debian-or-Ubuntu/" class="article-date">
+  <time datetime="2013-06-17T11:39:00.000Z" itemprop="datePublished">2013-06-17</time>
+</a>
+		</span>
+		<span class="meta-elements author">Jeff Ferrari</span>
+		<div class="commentscount">
+			
+				<a href="https://www.poweredbyjeff.com/2013/06/17/Install-script-for-Teamspeak-3-server-on-Debian-or-Ubuntu/#disqus_thread" class="article-comment-link">Comments</a>
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 class="article-title entry-title" itemprop="name">
+      Install script for Teamspeak 3 server on Debian (or Ubuntu)
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<p>The ‘teamspeak-server’ package built for Debian/Ubuntu at the time of writing this article is only for Teamspeak version 2, but everyone who is anyone these days uses TS3. After trolling around the Internet looking for a prebuilt package I could trust, I decided to roll my own install script. For the impatient <strong>here are the steps to get a Teamspeak 3 server installed on Debian-based Linux quickly</strong>:</p>
+<ol>
+<li>Try this in a test environment first! It requires root privileges and can take your children. You have been warned.</li>
+<li>Download and transfer installts3.sh to your server.</li>
+<li>Download and transfer the correct server binary to your server.</li>
+<li>Run <code>installts3.sh</code>:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod u+x installts3.sh</span><br><span class="line">sudo ./installts3.sh serverbinary.tar.gz</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>Replace serverbinary.tar.gz with the name of the file you downloaded from the Teamspeak website. If there are no errors the script will tell you where to get your ServerAdmin privilege key and you are good to go!</p>
+<a id="more"></a>
+<p>For the curious, below is the detail on why I rolled my own and what features are added that aren’t out of the box. First credit where credit is due - these 2 websites are the principle inspiration for this script:</p>
+<ul>
+<li><a href="http://coding-journal.com/teamspeak-3-installation-script-for-debianubuntu/" target="_blank" rel="noopener">http://coding-journal.com/teamspeak-3-installation-script-for-debianubuntu/</a></li>
+<li><a href="http://forum.teamspeak.com/showthread.php/74883-TUTORIAL-Teamspeak3-Server-w-MySQL-Databse-on-Debian-Ubuntu" target="_blank" rel="noopener">http://forum.teamspeak.com/showthread.php/74883-TUTORIAL-Teamspeak3-Server-w-MySQL-Databse-on-Debian-Ubuntu</a></li>
+</ul>
+<p><strong>Run Teamspeak daemon as unprivileged user</strong>: this one was important and lacking in most TS3 install scripts I saw. I have other services running on the same VPS that I run Teamspeak on and would be fairly unhappy should a bug in Teamspeak cause my whole server to be compromised. It is a security best practice to run things like this under their own account.</p>
+<p><strong>Define install location</strong>: most scripts I saw hardcoded the location, or installed in the home folder of the account created. This installs into /opt/teamspeak3 by default, which is a more generic location.</p>
+<p><strong>Create an init.d script for convenient start/stop/start on boot</strong>: this will also create an init.d script properly adjusted with the user and install path defined above. It will also conveniently set Teamspeak 3 to start on boot. For those that don’t care for my script but want to roll their own init.d script quickly, a template script is located at /etc/init.d/skeleton in Debian systems. Start with that and customize so you have an LSB compliant init.d script.</p>
+<p>The latest install script can be downloaded from <a href="https://github.com/tuxillator/installts3" target="_blank" rel="noopener">my Github</a>… if you spot any bugs and fix them send me a pull request or drop a note in the comments. Peace!</p>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/serveradmin/">serveradmin</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/teamspeak3/">teamspeak3</a></li></ul>
+
+			</span>
+		</div>
+	</footer>
+	
+    
+<nav id="article-nav">
+  
+    <a href="/2013/07/08/Sniff-iPhone-traffic-using-Tomato-router-firmware/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Sniff iPhone traffic using Tomato router firmware
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2013/06/15/Mount-SSH-on-a-Mac-using-Macports-aka-the-easy-way/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          Mount SSH on a Mac using Macports (aka the easy way)
+        
+      </div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+    </div>
+    <footer id="footer">
+	<h1 class="footer-blog-title">
+		<a href="/">Powered By Jeff</a>
+	</h1>
+	<span class="copyright">
+		&copy; 2020 Jeff Ferrari<br>
+		The official website of Jeff Ferrari
+	</span>
+</footer>
+
+    
+<script>
+  var disqus_shortname = 'tuxillator';
+  
+  var disqus_url = 'https://www.poweredbyjeff.com/2013/06/17/Install-script-for-Teamspeak-3-server-on-Debian-or-Ubuntu/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>
