@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Macports-installed MongoDB won&#39;t start under fresh install (OS X 10.10 Yosemite) | Powered By Jeff</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="I had problems getting MongoDB to start using launchd (my preferred method for portability) after a fresh Yosemite install. After initially suspecting the _mongo user was not being correctly created b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Macports-installed MongoDB won&#39;t start under fresh install (OS X 10.10 Yosemite)">
+<meta property="og:url" content="https://www.poweredbyjeff.com/2014/11/02/02-Macports-installed-MongoDB-won-t-start-under-fresh-install-OS-X-10-10-Yosemite/index.html">
+<meta property="og:site_name" content="Powered By Jeff">
+<meta property="og:description" content="I had problems getting MongoDB to start using launchd (my preferred method for portability) after a fresh Yosemite install. After initially suspecting the _mongo user was not being correctly created b">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2014-11-02T03:02:00.000Z">
+<meta property="article:modified_time" content="2024-03-30T03:41:32.889Z">
+<meta property="article:author" content="Jeff Ferrari">
+<meta property="article:tag" content="macports">
+<meta property="article:tag" content="mongodb">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43838521-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div class="mobile-nav-panel">
+	<i class="icon-reorder icon-large"></i>
+</div>
+<header id="header">
+	<h1 class="blog-title">
+		<a href="/">Powered By Jeff</a>
+	</h1>
+	<nav class="nav">
+		<ul>
+			<li><a target="_blank" rel="noopener" href="https://github.com/tuxillator">GitHub</a></li><li><a target="_blank" rel="noopener" href="http://www.linkedin.com/in/jjferrari">LinkedIn</a></li>
+		</ul>
+	</nav>
+</header>
+
+    <div id="main">
+      <article id="post-02-Macports-installed-MongoDB-won-t-start-under-fresh-install-OS-X-10-10-Yosemite" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2014/11/02/02-Macports-installed-MongoDB-won-t-start-under-fresh-install-OS-X-10-10-Yosemite/" class="article-date">
+  <time datetime="2014-11-02T03:02:00.000Z" itemprop="datePublished">2014-11-02</time>
+</a>
+		</span>
+		<span class="meta-elements author">Jeff Ferrari</span>
+		<div class="commentscount">
+			
+				<a href="https://www.poweredbyjeff.com/2014/11/02/02-Macports-installed-MongoDB-won-t-start-under-fresh-install-OS-X-10-10-Yosemite/#disqus_thread" class="article-comment-link">Comments</a>
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 class="article-title entry-title" itemprop="name">
+      Macports-installed MongoDB won&#39;t start under fresh install (OS X 10.10 Yosemite)
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<p>I had problems getting MongoDB to start using launchd (my preferred method for portability) after a fresh Yosemite install. After initially suspecting the <code>_mongo</code> user was not being correctly created by the Macports installation script, it turned out to be a simple permissions issue. <span id="more"></span> After doing:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo port load mongodb</span><br></pre></td></tr></table></figure>
+<p>all looked well, no errors. In the console log however I was getting this:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">... com.apple.xpc.launchd[1]: (org.macports.mongodb) Service only ran for 0 seconds. Pushing respawn out by 10 seconds.</span><br></pre></td></tr></table></figure>
+<p>And <code>ps aux | grep mongo</code> was not showing any running processes. Eventually OS X did not like my daemon:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">... com.apple.xpc.launchd[1]: (org.macports.mongodb) This service is defined to be constantly running and is inherently inefficient.</span><br></pre></td></tr></table></figure>
+<p>So, after ensuring xCode was installed I checked how this service was starting:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open /opt/local/etc/LaunchDaemons/org.macports.mongodb/org.macports.mongodb.plist</span><br></pre></td></tr></table></figure>
+<p>This revealed the user account, and a variety of dependent files&#x2F;folders that launchd was looking for to start this service. Of note:</p>
+<p><code>_mongo</code> - the user the server process will run under</p>
+<p>&#x2F;opt&#x2F;local&#x2F;bin&#x2F;mongod - the folder where the server binary is located</p>
+<p>&#x2F;opt&#x2F;local&#x2F;var&#x2F;db&#x2F;mongodb - the default –dbpath option to mongod, where the data is stored</p>
+<p>&#x2F;opt&#x2F;local&#x2F;var&#x2F;log&#x2F;mongodb&#x2F;mongodb.log  - the default –logpath option to mongod, where the log file is stored</p>
+<p>First and most obvious, I checked if the system account existed:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dscl . -ls /Users | grep mongo</span><br></pre></td></tr></table></figure>
+<p>Looked fine, I saw <code>_mongo</code> as expected per the daemon plist. Turns out in my case something (another Macports package most likely) had changed the permissions for one of the parent folders of the log file. This resolved for me:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod 755 /opt/local/var/log</span><br></pre></td></tr></table></figure>
+<p>It was (incorrectly) set to 744, while readable could not be descended into. A subsequent unload&#x2F;reload of the port allowed me to connect to the mongo CLI successfully. Unfortunately through this issue there was very little error logging, and what I had was ambiguous… if you find yourself in a similar situation check each of these places (and the parent folders back to root).</p>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/macports/" rel="tag">macports</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongodb/" rel="tag">mongodb</a></li></ul>
+
+			</span>
+		</div>
+	</footer>
+	
+    
+<nav id="article-nav">
+  
+    <a href="/2014/12/08/08-PADI-Rescue-Emergency-Action-Plan-EAP-for-Tioman-Malaysia/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          PADI Rescue Emergency Action Plan (EAP) for Tioman, Malaysia
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2013/08/12/12-FreeNAS-upgraded-to-9-1-unable-to-delete-old-jails/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          FreeNAS upgraded to 9.1, unable to delete old jails
+        
+      </div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+    </div>
+    <footer id="footer">
+	<h1 class="footer-blog-title">
+		<a href="/">Powered By Jeff</a>
+	</h1>
+	<span class="copyright">
+		&copy; 2024 Jeff Ferrari<br>
+		The official website of Jeff Ferrari
+	</span>
+</footer>
+
+    
+<script>
+  var disqus_shortname = 'tuxillator';
+  
+  var disqus_url = 'https://www.poweredbyjeff.com/2014/11/02/02-Macports-installed-MongoDB-won-t-start-under-fresh-install-OS-X-10-10-Yosemite/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
