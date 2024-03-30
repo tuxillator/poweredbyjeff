@@ -1,3 +1,4 @@
+---
 title: Installing and booting to Intel 750 SSD in Debian 8
 date: 2015-10-29 21:39:36
 tags:

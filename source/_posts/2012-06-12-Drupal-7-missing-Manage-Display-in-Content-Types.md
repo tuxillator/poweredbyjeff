@@ -1,3 +1,4 @@
+---
 title: "Drupal 7 missing 'Manage Display' in Content Types"
 date: 2012-06-12 22:53:00
 tags:

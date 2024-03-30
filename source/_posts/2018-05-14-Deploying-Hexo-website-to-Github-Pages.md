@@ -1,3 +1,4 @@
+---
 title: Deploy a Hexo blog to Github Pages
 tags:
 - cname

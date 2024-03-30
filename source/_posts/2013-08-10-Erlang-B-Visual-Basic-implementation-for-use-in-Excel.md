@@ -1,3 +1,4 @@
+---
 title: Erlang B Visual Basic implementation for use in Excel
 date: 2013-08-10 13:43:00
 tags:

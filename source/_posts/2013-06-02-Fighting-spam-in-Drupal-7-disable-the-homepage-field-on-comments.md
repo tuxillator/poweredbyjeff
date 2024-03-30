@@ -1,3 +1,4 @@
+---
 title: Fighting spam in Drupal 7 - disable the homepage field on comments
 date: 2013-06-02 18:58:00
 tags:

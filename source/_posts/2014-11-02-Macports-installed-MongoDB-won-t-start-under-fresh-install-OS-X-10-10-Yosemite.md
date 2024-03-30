@@ -1,3 +1,4 @@
+---
 title: "Macports-installed MongoDB won't start under fresh install (OS X 10.10 Yosemite)"
 date: 2014-11-02 11:02:00
 tags:

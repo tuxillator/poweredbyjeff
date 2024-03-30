@@ -1,3 +1,4 @@
+---
 title: Git cheat sheet - computer setup
 date: 2013-06-08 00:01:00
 updated: 2015-01-26 11:55:00

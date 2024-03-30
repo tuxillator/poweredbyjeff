@@ -1,3 +1,4 @@
+---
 title: Install script for Teamspeak 3 server on Debian (or Ubuntu)
 date: 2013-06-17 19:39:00
 tags:

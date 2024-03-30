@@ -1,3 +1,4 @@
+---
 title: Redirect an old hostname to new hostname using mod_rewrite and Drupal
 date: 2013-08-10 16:27:00
 tags:

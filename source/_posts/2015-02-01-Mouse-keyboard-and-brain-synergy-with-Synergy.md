@@ -1,3 +1,4 @@
+---
 title: Mouse keyboard and brain synergy with Synergy
 date: 2015-02-01 19:01:49
 tags:
