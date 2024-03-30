@@ -2,6 +2,15 @@
   "name": "poweredbyjeff",
   "version": "0.0.0",
   "private": true,
+  "scripts": {
+    "build": "hexo generate",
+    "clean": "hexo clean",
+    "deploy": "hexo deploy",
+    "server": "hexo server"
+  },
+  "hexo": {
+    "version": "7.1.1"
+  },
   "dependencies": {
     "hexo": "^7.1.1",
     "hexo-generator-archive": "^2.0.0",
