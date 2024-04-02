@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Deploy a Hexo blog to Github Pages | Powered By Jeff</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="Hexo is a powerful static website generator that can be combined with Github Pages to run a personal blog. This pairing is a convenient, performant and free blogging platform that is very flexible and">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deploy a Hexo blog to Github Pages">
+<meta property="og:url" content="https://www.poweredbyjeff.com/2024/04/02/14-Deploying-Hexo-website-to-Github-Pages/index.html">
+<meta property="og:site_name" content="Powered By Jeff">
+<meta property="og:description" content="Hexo is a powerful static website generator that can be combined with Github Pages to run a personal blog. This pairing is a convenient, performant and free blogging platform that is very flexible and">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-04-02T15:20:09.058Z">
+<meta property="article:modified_time" content="2024-04-02T15:20:09.058Z">
+<meta property="article:author" content="Jeff Ferrari">
+<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="cname">
+<meta property="article:tag" content="github">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43838521-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div class="mobile-nav-panel">
+	<i class="icon-reorder icon-large"></i>
+</div>
+<header id="header">
+	<h1 class="blog-title">
+		<a href="/">Powered By Jeff</a>
+	</h1>
+	<nav class="nav">
+		<ul>
+			<li><a target="_blank" rel="noopener" href="https://github.com/tuxillator">GitHub</a></li><li><a target="_blank" rel="noopener" href="http://www.linkedin.com/in/jjferrari">LinkedIn</a></li>
+		</ul>
+	</nav>
+</header>
+
+    <div id="main">
+      <article id="post-14-Deploying-Hexo-website-to-Github-Pages" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2024/04/02/14-Deploying-Hexo-website-to-Github-Pages/" class="article-date">
+  <time datetime="2024-04-02T15:20:09.058Z" itemprop="datePublished">2024-04-02</time>
+</a>
+		</span>
+		<span class="meta-elements author">Jeff Ferrari</span>
+		<div class="commentscount">
+			
+				<a href="https://www.poweredbyjeff.com/2024/04/02/14-Deploying-Hexo-website-to-Github-Pages/#disqus_thread" class="article-comment-link">Comments</a>
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 class="article-title entry-title" itemprop="name">
+      Deploy a Hexo blog to Github Pages
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<p><a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> is a powerful static website generator that can be combined with <a target="_blank" rel="noopener" href="https://pages.github.com/">Github Pages</a> to run a personal blog. This pairing is a convenient, performant and free blogging platform that is very flexible and relatively simple.</p>
+<p>Most instructions make running this combination more complicated than it needs to be. If you’re already using Github to publish your Hexo blog, read on to learn how to update your workflow and eliminate some plugins.</p>
+<span id="more"></span>
+
+<h2 id="The-background"><a href="#The-background" class="headerlink" title="The background"></a>The background</h2><p><a target="_blank" rel="noopener" href="https://help.github.com/articles/configuring-a-publishing-source-for-github-pages/">Github Pages</a> content can come from one of 3 locations:</p>
+<ul>
+<li>master branch of <code>&lt;username&gt;.github.io</code> repository</li>
+<li>a <code>gh-pages</code> branch from your repository</li>
+<li>a <code>docs</code> subdirectory</li>
+</ul>
+<p>Most existing tutorials guide you to create a new repository according to the first option. If you do that you probably end up with 2 repos like I did:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/tuxillator/poweredbyjeff">poweredbyjeff</a> (stores Hexo folder containing markdown, themes, config, etc)</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/tuxillator/tuxillator.github.io">tuxillator.github.io</a> (stores and publishes the actual website generated by Hexo)</li>
+</ul>
+<p>By default Hexo will generate content into a folder called <code>public</code>. This is configurable via the <code>public_dir</code> setting in <code>_config.yml</code>, so conveniently I could enable Github Pages using the <code>docs</code> subdirectory on my poweredbyjeff repo and do away with one repo. This also has the advantage of allowing me to publish other static websites using different repositories on Github Pages.</p>
+<p>If you look carefully at the Github Pages documentation however, there’s a limitation:</p>
+<blockquote>
+<p>If your site is a User or Organization Page that has a repository named <code>&lt;username&gt;.github.io</code> or <code>&lt;orgname&gt;.github.io</code>, you cannot publish your site’s source files from different locations.</p>
+</blockquote>
+<p>If you blinked and missed it, once you have a github.io repository you can’t use the docs&#x2F; folder on any repos. So make sure you disable&#x2F;rename that existing repo if you’re using it.</p>
+<h2 id="Steps"><a href="#Steps" class="headerlink" title="Steps"></a>Steps</h2><p>So if you’re using Hexo and Github Pages but publishing on <code>&lt;username&gt;.github.io</code> repositories, here’s how you convert.</p>
+<ul>
+<li>On Github (step 1):<ul>
+<li>Create a new repository to store both your Hexo instance and generated website (I suggest naming after your website)</li>
+<li>Note down the repo address for later.</li>
+</ul>
+</li>
+<li>In your Hexo folder (step 2):<ul>
+<li>Remove existing conflicting plugins:<ul>
+<li><code>npm uninstall hexo-generator-cname hexo-deployer-git</code></li>
+<li>Remove related plugin configuration in <code>_config.yml</code></li>
+</ul>
+</li>
+<li>Add the CNAME file (no extension, all uppercase) in the <code>source</code> folder. The contents of this file should be the domain of your website, e.g. <code>www.poweredbyjeff.com</code>.</li>
+<li>Set <code>public_dir: docs</code> in <code>_config.yml</code>.</li>
+<li>Add the Hexo folder to git, add Github repository created in Step 1 as origin and push to origin.</li>
+</ul>
+</li>
+<li>Back on Github (step 3):<ul>
+<li>Disable Github Pages on your existing <code>&lt;username&gt;.github.io</code> repository</li>
+<li>Rename that repository (or delete it if you’re super confident)</li>
+<li>Enable Github Pages on the repository created in Step 1 and choose the <em>master branch &#x2F;docs folder</em> option.</li>
+<li>Eat cake.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Advantages"><a href="#Advantages" class="headerlink" title="Advantages"></a>Advantages</h2><ul>
+<li>Source is now stored in the same Github repository as the generated website</li>
+<li>Do not need <code>hexo-generator-cname</code> or <code>hexo-deployer-git</code> plugins</li>
+<li>Deploy is simply push to Github (which coincidentally backs up your source)</li>
+</ul>
+<p>Feel free to leave comments or questions below. Enjoy!</p>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cname/" rel="tag">cname</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/" rel="tag">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li></ul>
+
+			</span>
+		</div>
+	</footer>
+	
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/11/06/06-Basic-colored-Tilemaps-in-Unity/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          Basic colored Tilemaps in Unity
+        
+      </div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+    </div>
+    <footer id="footer">
+	<h1 class="footer-blog-title">
+		<a href="/">Powered By Jeff</a>
+	</h1>
+	<span class="copyright">
+		&copy; 2024 Jeff Ferrari<br>
+		The official website of Jeff Ferrari
+	</span>
+</footer>
+
+    
+<script>
+  var disqus_shortname = 'tuxillator';
+  
+  var disqus_url = 'https://www.poweredbyjeff.com/2024/04/02/14-Deploying-Hexo-website-to-Github-Pages/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
