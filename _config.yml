@@ -95,8 +95,6 @@ ignore:
 theme: apollo
 plugin:
 
-disqus_shortname: tuxillator
-
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
